@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ChatService {
-  private baseUrl = 'https://kiddieslearn-api-production.up.railway.app/chat';
+  private baseUrl = 'https://kiddieslearn-api-production.up.railway.app/chatbot';
   // private baseUrl = 'http://localhost:3000/chatbot';
 
   constructor(private http: HttpClient) {}
