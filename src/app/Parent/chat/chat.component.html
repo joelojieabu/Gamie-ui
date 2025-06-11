@@ -1,0 +1,98 @@
+<!-- chat.component.html -->
+<div class="chat-container">
+  <!-- Header -->
+  <div class="chat-header">
+    <h2>Chat With Amber</h2>
+    <div class="date-info">
+      <div class="date">{{ currentDate }}</div>
+      <div class="sync-info">Last synced: 7 minutes ago</div>
+    </div>
+    <!-- <div class="logo">
+        <span>GTCO</span>
+      </div> -->
+    <img src="../../../assets/gtlogo.svg" />
+  </div>
+
+  <!-- Messages Container -->
+  <div class="messages-container" #messagesContainer>
+    <div *ngIf="messages.length === 0" class="empty-state">
+      <p>Start a conversation by typing a message below</p>
+    </div>
+
+    <div
+      *ngFor="let message of messages"
+      class="message-wrapper"
+      [ngClass]="{
+        'user-message': message.sender === 'user',
+        'ai-message': message.sender === 'ai'
+      }"
+    >
+      <div class="message-content">
+        <div *ngIf="message.sender === 'ai'" class="ai-avatar">
+          <span>AI</span>
+        </div>
+        <div
+          class="message-bubble"
+          [ngClass]="{
+            'user-bubble': message.sender === 'user',
+            'ai-bubble': message.sender === 'ai'
+          }"
+        >
+          <p class="message-text">{{ message.text }}</p>
+          <p class="message-time">{{ formatTime(message.timestamp) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div *ngIf="isLoading" class="message-wrapper ai-message">
+      <div class="message-content">
+        <div class="ai-avatar">
+          <span>AI</span>
+        </div>
+        <div class="message-bubble ai-bubble">
+          <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="input-area">
+    <div class="input-wrapper">
+      <textarea
+        #messageInput
+        [(ngModel)]="inputValue"
+        (keypress)="onKeyPress($event)"
+        (input)="autoResize($event)"
+        placeholder="Ask me anything..."
+        class="message-input"
+        [disabled]="isLoading"
+        rows="1"
+      >
+      </textarea>
+      <button
+        (click)="sendMessage()"
+        [disabled]="!inputValue.trim() || isLoading"
+        class="send-button"
+        [ngClass]="{ active: inputValue.trim() && !isLoading }"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22,2 15,22 11,13 2,9"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

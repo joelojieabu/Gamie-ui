@@ -1,37 +1,41 @@
 <!-- sidebar.component.html -->
 <div class="sidebar">
-    <!-- Profile Section with empty space for image -->
-    <div class="profile-section">
-      <div class="profile-image-placeholder">
-        <!-- Insert your profile image here -->
+  <!-- Profile Section with empty space for image -->
+  <div class="profile-section">
+    <div class="profile-image-placeholder">
+      <div class="avatar">
+        <span class="smile">😊</span>
       </div>
     </div>
-  
-    <!-- Navigation Menu -->
-    <nav class="nav-menu">
-      <ul>
-        <li *ngFor="let item of menuItems" 
-            [class.active]="item.active"
-            (click)="navigateTo(item.route)">
-          <span class="material-icons">{{ item.icon }}</span>
-          <span class="nav-label">{{ item.label }}</span>
-        </li>
-      </ul>
-    </nav>
-  
-    <!-- Chat with AI Button -->
-    <div class="chat-ai-section">
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="nav-menu">
+    <ul>
+      <li
+        *ngFor="let item of menuItems"
+        [class.active]="item.active"
+        (click)="navigateTo(item.route); changeItemBackgroundColor(item.id)"
+      >
+        <span class="material-icons">{{ item.icon }}</span>
+        <span class="nav-label">{{ item.label }}</span>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Chat with AI Button -->
+  <!-- <div class="chat-ai-section">
       <button class="chat-ai-btn" (click)="chatWithAI()">
         <span class="material-icons">chat</span>
         <span>Chat With AI</span>
       </button>
-    </div>
-  
-    <!-- Logout Button -->
-    <div class="logout-section">
-      <button class="logout-btn" (click)="logout()">
-        <span class="material-icons">logout</span>
-        <span>Logout</span>
-      </button>
-    </div>
+    </div> -->
+
+  <!-- Logout Button -->
+  <div class="logout-section">
+    <button class="logout-btn" (click)="logout()">
+      <span class="material-icons">logout</span>
+      <span>Logout</span>
+    </button>
   </div>
+</div>

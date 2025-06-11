@@ -1,1 +1,191 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h2>Dashboard</h2>
+    </div>
+    <div class="header-right">
+      <div class="date-info">
+        <span class="current-date">{{
+          currentDate | date : "EEEE, d MMMM, y"
+        }}</span>
+        <span class="last-synced"
+          >Last synced: {{ currentDate | date : "shortTime" }}</span
+        >
+      </div>
+      <img src="../../../assets/gtlogo.svg" />
+    </div>
+  </div>
+
+  <!-- Child Profile Selector -->
+  <div class="profile-selector">
+    <mat-form-field appearance="outline" class="select-child-field">
+      <mat-label>Select Child Profile</mat-label>
+      <mat-select
+        [(ngModel)]="selectedChildId"
+        (selectionChange)="onChildSelect($event.value)"
+      >
+        <mat-option *ngFor="let child of children" [value]="child.id">
+          {{ child.userName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Search and Date Filter Row -->
+  <!-- <div class="filter-row">
+      <mat-form-field class="search-field" appearance="outline">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput placeholder="Search Learning Activity" [(ngModel)]="searchTerm" (keyup)="applyFilter()">
+      </mat-form-field>
+      
+      <mat-form-field class="date-field" appearance="outline">
+        <mat-icon matPrefix>calendar_today</mat-icon>
+        <input matInput [matDatepicker]="picker" 
+               placeholder="May 05, 2025 - May 31st, 2025" 
+               [value]="startDate"
+               (dateChange)="onDateRangeChange()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      
+      <button mat-button class="month-selector">
+        May ▼
+      </button>
+    </div> -->
+
+  <!-- Stats Cards and Chart Row -->
+  <div class="stats-chart-row">
+    <!-- Stats Cards Column -->
+    <div class="stats-column">
+      <!-- Modules Completed Card -->
+      <mat-card class="stat-card completed-card">
+        <div class="card-header">
+          <span class="card-icon">📚</span>
+          <span class="card-title">Modules Completed</span>
+          <button mat-icon-button>
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </div>
+        <div class="card-value">{{ modulesCompleted }}</div>
+      </mat-card>
+
+      <!-- Best Score Card -->
+      <mat-card class="stat-card passed-card">
+        <div class="card-header">
+          <span class="card-icon">✅</span>
+          <span class="card-title">Best Score</span>
+          <button mat-icon-button>
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </div>
+        <div class="card-value">{{ quizzesPassed }}</div>
+      </mat-card>
+
+      <!-- Average Score Card -->
+      <mat-card class="stat-card progress-card">
+        <div class="card-header">
+          <span class="card-icon">⏳</span>
+          <span class="card-title">Average Score</span>
+          <button mat-icon-button>
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </div>
+        <div class="card-value">{{ inProgressModules }}</div>
+      </mat-card>
+
+      <!-- Average Time Card -->
+      <mat-card class="stat-card minutes-card">
+        <div class="card-header">
+          <span class="card-icon">⏱️</span>
+          <span class="card-title">Average Time (Minutes)</span>
+          <button mat-icon-button>
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </div>
+        <div class="card-value">{{ minutesSpent }}</div>
+      </mat-card>
+    </div>
+
+    <!-- Chart Column -->
+    <div class="chart-column">
+      <mat-card class="chart-card">
+        <div class="chart-header">
+          <h3>Score History</h3>
+        </div>
+        <div class="chart-container">
+          <canvas #activityChart></canvas>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Recent Reports Table -->
+  <div class="reports-section">
+    <div class="reports-header">
+      <h2>Recent Activity Report</h2>
+    </div>
+
+    <mat-card class="table-card">
+      <table mat-table [dataSource]="dataSource" class="reports-table">
+        <!-- Module ID Column -->
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.firstName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="moduleName">
+          <th mat-header-cell *matHeaderCellDef>Module Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.moduleName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef>Score</th>
+          <td mat-cell *matCellDef="let element">{{ element.score }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="timeTaken">
+          <th mat-header-cell *matHeaderCellDef>Time Spent</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.timeTaken }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+          <th mat-header-cell *matHeaderCellDef>Level</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.level }}
+          </td>
+        </ng-container>
+
+        <!-- Date Completed Column -->
+        <ng-container matColumnDef="playedAt">
+          <th mat-header-cell *matHeaderCellDef>Played At</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.playedAt }}
+          </td>
+        </ng-container>
+
+        <!-- Score Column -->
+
+        <!-- Status Column -->
+
+        <!-- Actions Column -->
+        <!-- <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button class="view-btn" (click)="viewReport(element)">
+              View
+            </button>
+          </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,362 @@
+.dashboard-container {
+  padding: 24px;
+  background-color: #f8f9fa;
+  font-family: "Urbanist", sans-serif;
+}
+
+// Header Section
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+
+  .header-left {
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      color: #333;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    img {
+      width: 25%;
+      height: 25%;
+    }
+
+    .date-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin: 1rem;
+
+      .current-date {
+        font-size: 14px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .last-synced {
+        font-size: 12px;
+        color: #999;
+      }
+    }
+  }
+}
+
+// Profile Selector
+.profile-selector {
+  margin-bottom: 24px;
+
+  .select-child-field {
+    width: 300px;
+
+    ::ng-deep .mat-mdc-form-field-flex {
+      // background-color: #ff6b35;
+      border-radius: 8px;
+    }
+
+    ::ng-deep .mat-mdc-form-field-label-wrapper .mat-mdc-form-field-label {
+      // color: white !important;
+    }
+
+    ::ng-deep .mat-mdc-select-value {
+      // color: white;
+    }
+
+    ::ng-deep .mat-mdc-select-arrow {
+      // color: white;
+    }
+  }
+}
+
+// Filter Row
+.filter-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+
+  .search-field {
+    flex: 1;
+    max-width: 300px;
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: #ddd;
+    }
+  }
+
+  .date-field {
+    min-width: 280px;
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: #ddd;
+    }
+  }
+
+  .month-selector {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #666;
+  }
+}
+
+// Stats and Chart Row
+.stats-chart-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+
+  .stats-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    min-width: 400px;
+  }
+
+  .chart-column {
+    flex: 1;
+    width: 50%;
+  }
+}
+
+// Stat Cards
+.stat-card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    .card-icon {
+      font-size: 20px;
+      margin-right: 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    button {
+      color: #999;
+    }
+  }
+
+  .card-value {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  &.completed-card {
+    border-left: 4px solid #ff6b35;
+  }
+
+  &.passed-card {
+    border-left: 4px solid #4caf50;
+  }
+
+  &.progress-card {
+    border-left: 4px solid #2196f3;
+  }
+
+  &.minutes-card {
+    border-left: 4px solid #9c27b0;
+  }
+}
+
+// Chart Card
+.chart-card {
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+
+  .chart-header {
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+      margin: 0;
+    }
+  }
+
+  .chart-container {
+    height: 250px;
+    position: relative;
+  }
+}
+
+// Reports Section
+.reports-section {
+  .reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      letter-spacing: 0.5px;
+      margin: 0;
+      font-family: "Urbanist", sans-serif!important;
+    }
+
+    .view-all-btn {
+      color: #999;
+      font-size: 14px;
+
+      &:hover {
+        color: #ff6b35;
+      }
+    }
+  }
+
+  .table-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+}
+
+// Table Styles
+.reports-table {
+  width: 100%;
+
+  th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 16px 12px;
+    border-bottom: 1px solid #eee;
+      font-family: "Urbanist", sans-serif!important;
+  }
+
+  td {
+    padding: 16px 12px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  tr:hover {
+    background-color: #fafafa;
+  }
+}
+
+// Status and Priority Badges
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+
+  &.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+
+  &.status-in-progress {
+    background-color: #d1ecf1;
+    color: #0c5460;
+  }
+}
+
+.activity-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.priority-badge {
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: fit-content;
+
+  &.priority-high {
+    background-color: #ff6b35;
+    color: white;
+  }
+
+  &.priority-low {
+    background-color: #4caf50;
+    color: white;
+  }
+}
+
+// View Button
+.view-btn {
+  color: #ff6b35;
+  font-weight: 500;
+  font-size: 14px;
+
+  &:hover {
+    background-color: rgba(255, 107, 53, 0.1);
+  }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .stats-chart-row {
+    flex-direction: column;
+  }
+
+  .stats-column {
+    grid-template-columns: 1fr;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .filter-row {
+    flex-direction: column;
+    align-items: stretch;
+
+    .search-field,
+    .date-field {
+      max-width: none;
+    }
+  }
+
+  .reports-table {
+    font-size: 12px;
+
+    th,
+    td {
+      padding: 8px 6px;
+    }
+  }
+}
+mat-label, mat-select, mat-option {
+    font-family: "Urbanist", sans-serif;
+}

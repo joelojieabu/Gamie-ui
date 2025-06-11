@@ -12,17 +12,27 @@ export class SideBarComponent {
   constructor(private router: Router) {}
 
   menuItems = [
-    { icon: 'home', label: 'Dashboard', route: '/dashboard' },
     {
-      icon: 'trending_up',
-      label: 'Child Progress',
-      route: '/child-progress',
-      active: true,
+      id: 1,
+      icon: 'home',
+      label: 'Dashboard',
+      route: '/parent/dashboard',
+      active: false,
     },
-    { icon: 'card_giftcard', label: 'Rewards', route: '/rewards' },
-    { icon: 'person', label: 'Manage Children', route: '/manage-children' },
-    { icon: 'notifications', label: 'Notifications', route: '/notifications' },
-    { icon: 'settings', label: 'Account Settings', route: '/account-settings' },
+    {
+      id: 2,
+      icon: 'person',
+      label: 'Children',
+      route: '/parent/child-list',
+      active: false,
+    },
+    {
+      id: 3,
+      icon: 'chat',
+      label: 'Ask Amber',
+      route: '/parent/chat',
+      active: false,
+    },
   ];
 
   navigateTo(route: string) {
@@ -37,5 +47,11 @@ export class SideBarComponent {
   chatWithAI() {
     // Handle chat with AI logic here
     console.log('Chat with AI clicked');
+  }
+
+  changeItemBackgroundColor(id: number) {
+    this.menuItems.map((item) =>
+      item.id === id ? (item.active = true) : (item.active = false)
+    );
   }
 }

@@ -1,0 +1,31 @@
+<div class="sidebar">
+  <div class="logo">
+    <img src="../../../assets/gtlogo.svg" alt="Logo" />
+  </div>
+  <nav class="nav-menu">
+    <a
+      routerLink="/parent/dashboard"
+      [class.active]="isActive('/parent/dashboard')"
+      class="nav-item"
+    >
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a>
+    <a
+      routerLink="/parent/create-child"
+      [class.active]="isActive('/parent/create-child')"
+      class="nav-item"
+    >
+      <mat-icon>child_care</mat-icon>
+      <span>Children</span>
+    </a>
+    <a
+      routerLink="/parent/chat"
+      [class.active]="isActive('/parent/chat')"
+      class="nav-item"
+    >
+      <mat-icon>chat</mat-icon>
+      <span>Chat with AI</span>
+    </a>
+  </nav>
+</div>

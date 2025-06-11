@@ -4,5 +4,9 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.my-custom-snackbar {
+  background-color: #f7741d !important; /* Example color */
+  color: white; /* Optional: Change text color */
+}

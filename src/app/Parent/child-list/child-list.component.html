@@ -1,0 +1,59 @@
+<section>
+  <h2>Children</h2>
+  <button class="continue-button" (click)="addChild()">+ Add Child</button>
+</section>
+
+<div class="table-container">
+  <div class="table-wrapper" *ngIf="!loading; else loadingTemplate">
+    <table class="reports-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Username</th>
+          <th>Date of Birth</th>
+          <th>Level</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let child of children" class="table-row">
+          <td class="module-id">{{ child.id }}</td>
+          <td class="date">{{ child.firstName }}</td>
+          <td class="score">{{ child.lastName }}</td>
+          <td class="status">
+            <span
+              [class]="'status-badge status-' + child.userName.toLowerCase()"
+            >
+              {{ child.userName }}
+            </span>
+          </td>
+          <td class="activity">
+            <div class="activity-info">
+              <span class="time">{{ child.dateOfBirth }}</span>
+            </div>
+          </td>
+          <td class="score">{{ child.level }}</td>
+          <td (click)="goToChild(child.id)" class="eye">
+            <mat-icon>remove_red_eye</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading children...</p>
+    </div>
+  </ng-template>
+
+  <div *ngIf="error" class="error-state">
+    <p>{{ error }}</p>
+    <!-- <button class="retry-btn" (click)="loadChildren(parseInt(parentId))">
+      Retry
+    </button> -->
+  </div>
+</div>
