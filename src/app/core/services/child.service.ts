@@ -26,8 +26,8 @@ interface Child {
   providedIn: 'root',
 })
 export class ChildService {
-  // private baseUrl = 'https://kiddieslearn-api-production.up.railway.app/child';
-  private baseUrl = 'http://localhost:3000/child';
+  private baseUrl = 'https://kiddieslearn-api-production.up.railway.app/child';
+  // private baseUrl = 'http://localhost:3000/child';
 
   routeChildId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 

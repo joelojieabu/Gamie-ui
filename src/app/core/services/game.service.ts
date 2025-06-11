@@ -31,10 +31,10 @@ interface ParentStats {
   providedIn: 'root',
 })
 export class GameService {
-  // private baseUrl =
-  //   'https://kiddieslearn-api-production.up.railway.app/gameSession';
+  private baseUrl =
+    'https://kiddieslearn-api-production.up.railway.app/gameSession';
 
-  private baseUrl = 'http://localhost:3000/gameSession';
+  // private baseUrl = 'http://localhost:3000/gameSession';
 
   constructor(private http: HttpClient) {}
 
