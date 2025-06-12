@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,26 +10,26 @@ import { Router } from '@angular/router';
   styleUrl: './side-bar.component.scss',
 })
 export class SideBarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private snackBar: MatSnackBar) {}
 
   menuItems = [
     {
       id: 1,
-      icon: 'home',
-      label: 'Dashboard',
-      route: '/parent/dashboard',
+      icon: 'library_books',
+      label: 'Reports',
+      route: '/parent/report',
       active: false,
     },
     {
       id: 2,
-      icon: 'person',
-      label: 'Children',
+      icon: 'supervised_user_circle',
+      label: 'Manage Children',
       route: '/parent/child-list',
       active: false,
     },
     {
       id: 3,
-      icon: 'chat',
+      icon: 'sentiment_satisfied_alt',
       label: 'Ask Amber',
       route: '/parent/chat',
       active: false,
@@ -40,8 +41,15 @@ export class SideBarComponent {
   }
 
   logout() {
-    // Handle logout logic here
-    console.log('Logout clicked');
+    sessionStorage.clear();
+    localStorage.clear();
+    this.router.navigateByUrl('/login')
+     this.snackBar.open('You have been logged out successfully', 'Close', {
+       duration: 3000,
+       horizontalPosition: 'center',
+       verticalPosition: 'top',
+       panelClass: ['my-custom-snackbar'],
+     });
   }
 
   chatWithAI() {

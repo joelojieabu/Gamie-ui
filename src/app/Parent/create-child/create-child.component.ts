@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -34,10 +34,12 @@ import { ChildService } from '../../core/services/child.service';
   templateUrl: './create-child.component.html',
   styleUrl: './create-child.component.scss',
 })
-export class CreateChildComponent implements OnInit {
+export class CreateChildComponent implements OnInit, OnDestroy {
   childForm: FormGroup;
   routeChildId!: number;
   child: any;
+  addButtonDisabled: boolean = true;
+  saveChangesButtonDisabled: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -59,6 +61,8 @@ export class CreateChildComponent implements OnInit {
       .subscribe((data: number) => (this.routeChildId = data));
 
     if (this.routeChildId) {
+      this.addButtonDisabled = true;
+      this.saveChangesButtonDisabled = false;
       this.childService.findOne(this.routeChildId).subscribe((data) => {
         this.child = data;
         this.childForm.patchValue({
@@ -103,7 +107,7 @@ export class CreateChildComponent implements OnInit {
 
       this.childService.createChild(childDto).subscribe({
         next: (response) => {
-          this.snackBar.open('Child created successfully', 'Close', {
+          this.snackBar.open('Child profile added successfully', 'Close', {
             duration: 3000,
             horizontalPosition: 'center',
             verticalPosition: 'top',
@@ -112,12 +116,12 @@ export class CreateChildComponent implements OnInit {
           // Reset form
           this.childForm.reset();
           // Navigate to dashboard after successful creation
-          this.router.navigate(['/parent/dashboard']);
+          this.router.navigate(['/parent/report']);
         },
         error: (error) => {
-          console.error('Error creating child:', error);
+          console.error('Error adding child profile:', error);
           this.snackBar.open(
-            'Failed to create child. Please try again.',
+            'Failed to add child profile. Please try again.',
             'Close',
             {
               duration: 3000,
@@ -137,7 +141,7 @@ export class CreateChildComponent implements OnInit {
     // Handle remove child logic here
     this.childService.delete(this.routeChildId).subscribe(
       (response) => {
-        this.snackBar.open('Profile deleted successfully', 'Close', {
+        this.snackBar.open('Child profile deleted successfully', 'Close', {
           duration: 3000,
           horizontalPosition: 'center',
           verticalPosition: 'top',
@@ -161,7 +165,9 @@ export class CreateChildComponent implements OnInit {
 
   onSaveChanges() {
     if (this.childForm.valid) {
-        this.childService.update(this.routeChildId, this.childForm.value).subscribe(
+      this.childService
+        .update(this.routeChildId, this.childForm.value)
+        .subscribe(
           (response) => {
             this.snackBar.open('Child profile updated successfully', 'Close', {
               duration: 3000,
@@ -192,5 +198,10 @@ export class CreateChildComponent implements OnInit {
       const control = this.childForm.get(key);
       control?.markAsTouched();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.childForm.reset();
+    this.routeChildId = 0;
   }
 }

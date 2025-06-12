@@ -135,7 +135,12 @@
     </div> -->
 
     <div class="action-buttons">
-      <button mat-raised-button class="add-child-btn" (click)="onAddChild()">
+      <button
+        mat-raised-button
+        class="add-child-btn"
+        (click)="onAddChild()"
+        [disabled]="addButtonDisabled"
+      >
         Add Child
       </button>
       <button
@@ -150,6 +155,7 @@
         color="warn"
         class="save-changes-btn"
         (click)="onSaveChanges()"
+        [disabled]="saveChangesButtonDisabled"
       >
         Save Changes
       </button>
