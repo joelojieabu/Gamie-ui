@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Child } from '../interfaces/child';
+import { environment } from '../environments/environment';
 
 interface CreateChildDTO {
   parentId: number;
@@ -10,24 +12,11 @@ interface CreateChildDTO {
   dateOfBirth: string;
 }
 
-interface Child {
-  id: number;
-  parentId: number;
-  firstName: string;
-  lastName: string;
-  userName: string;
-  dateOfBirth: string;
-  isActive: boolean;
-  createdAt: string;
-  level: number;
-}
-
 @Injectable({
   providedIn: 'root',
 })
 export class ChildService {
-  private baseUrl = 'https://kiddieslearn-api-production.up.railway.app/child';
-  // private baseUrl = 'http://localhost:3000/child';
+  private baseUrl = environment + 'child';
 
   routeChildId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 

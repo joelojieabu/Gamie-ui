@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 interface GameSession {
   childId: number;
@@ -31,10 +32,10 @@ interface ParentStats {
   providedIn: 'root',
 })
 export class GameService {
-  private baseUrl =
-    'https://kiddieslearn-api-production.up.railway.app/gameSession';
+  // private baseUrl =
+  //   'https://kiddieslearn-api-production.up.railway.app/gameSession';
 
-  // private baseUrl = 'http://localhost:3000/gameSession';
+  private baseUrl = environment + 'gameSession';
 
   constructor(private http: HttpClient) {}
 

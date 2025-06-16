@@ -13,21 +13,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { ChildService } from '../../core/services/child.service';
 import { GameService } from '../../core/services/game.service';
 import { Chart, registerables } from 'chart.js';
+import { Child } from '../../core/interfaces/child';
 
 Chart.register(...registerables);
-
-interface Child {
-  id: number;
-  parentId: number;
-  firstName: string;
-  lastName: string;
-  userName: string;
-  dateOfBirth: string;
-  isActive: boolean;
-  createdAt: string;
-  level: number;
-}
-
 export interface RecentActivityData {
   userName: string;
   moduleName: string;
@@ -54,17 +42,6 @@ interface ParentGameHistory {
   timeTaken: number;
   playedAt: string;
   firstName: string;
-  level: number;
-}
-interface Child {
-  id: number;
-  parentId: number;
-  firstName: string;
-  lastName: string;
-  userName: string;
-  dateOfBirth: string;
-  isActive: boolean;
-  createdAt: string;
   level: number;
 }
 
@@ -217,25 +194,6 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
-
-  // loadRecentGames() {
-  //   this.gameService.getParentHistory(this.parentId).subscribe({
-  //     next: (games) => {
-  //       const recentActivityData = games.map((game) => ({
-  //         userName: game.child?.userName || 'Unknown',
-  //         moduleName: game.name,
-  //         score: game.score.toString(),
-  //         timeTaken: `${game.timeTaken} minutes`,
-  //         playedAt: new Date(game.playedAt).toLocaleString(),
-  //       }));
-
-  //       // this.dataSource.data = recentActivityData;
-  //     },
-  //     error: (error) => {
-  //       console.error('Error loading recent games:', error);
-  //     },
-  //   });
-  // }
 
   createChart() {
     if (this.chartCanvas) {

@@ -1,0 +1,28 @@
+<div class="reward-shop">
+  <h2 class="section-title">Buy with your Points</h2>
+  
+  <!-- Rewards Grid -->
+  <div class="rewards-grid">
+    <div 
+      *ngFor="let item of rewardItems" 
+      class="reward-card"
+      [class.insufficient-points]="!canAfford(item.points)"
+      [style.background-color]="item.backgroundColor">
+      
+      <div class="reward-icon">{{ item.icon }}</div>
+      <h3 class="reward-name">{{ item.name }}</h3>
+      <div class="reward-points">{{ item.points }} Points</div>
+      <p class="reward-description">{{ item.description }}</p>
+      
+      <button 
+        class="redeem-btn"
+        [disabled]="!item.available || !canAfford(item.points)"
+        [class.insufficient]="!canAfford(item.points)"
+        (click)="redeemItem(item)">
+        <span *ngIf="!item.available">OUT OF STOCK</span>
+        <span *ngIf="item.available && !canAfford(item.points)">NOT ENOUGH POINTS</span>
+        <span *ngIf="item.available && canAfford(item.points)">REDEEM NOW</span>
+      </button>
+    </div>
+  </div>
+</div>

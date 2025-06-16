@@ -4,34 +4,55 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-side-bar',
+  selector: 'app-sidebar',
   imports: [CommonModule],
-  templateUrl: './side-bar.component.html',
-  styleUrl: './side-bar.component.scss',
+  templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.scss',
 })
-export class SideBarComponent {
+export class SidebarComponent {
   constructor(private router: Router, private snackBar: MatSnackBar) {}
 
   menuItems = [
     {
       id: 1,
-      icon: 'school',
-      label: 'Growth Corner',
-      route: '/parent/report',
+      icon: 'home',
+      label: 'Dashboard',
+      route: '/child',
       active: false,
     },
     {
       id: 2,
-      icon: 'supervisor_account',
-      label: 'My Kids',
-      route: '/parent/child-list',
+      icon: 'school',
+      label: 'Learn',
+      route: '/child/learn',
       active: false,
     },
     {
       id: 3,
+      icon: 'games',
+      label: 'Games',
+      route: '/child/games',
+      active: false,
+    },
+    {
+      id: 4,
+      icon: 'poll',
+      label: 'Leaderboard',
+      route: '/child/leaderboard',
+      active: false,
+    },
+    {
+      id: 5,
+      icon: 'card_giftcard',
+      label: 'Rewards',
+      route: '/child/rewards',
+      active: false,
+    },
+    {
+      id: 6,
       icon: 'whatshot',
-      label: 'Ask Gamie ',
-      route: '/parent/chat',
+      label: 'Ask Gamie',
+      route: '/child/chat',
       active: false,
     },
   ];

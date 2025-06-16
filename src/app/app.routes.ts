@@ -7,6 +7,12 @@ import { CreateChildComponent } from './Parent/create-child/create-child.compone
 import { ChatComponent } from './Parent/chat/chat.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChildListComponent } from './Parent/child-list/child-list.component';
+import { MainComponent as ChildMainComponent } from './Child/main/main.component';
+import { ChildDashboardComponent } from './Child/child-dashboard/child-dashboard.component';
+import { RewardListComponent } from './Child/reward-list/reward-list.component';
+import { GamesListComponent } from './Child/games-list/games-list.component';
+import { LeaderBoardComponent } from './Child/leader-board/leader-board.component';
+import { LearnComponent } from './Child/learn/learn.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parent-login', pathMatch: 'full' },
@@ -22,6 +28,18 @@ export const routes: Routes = [
       { path: 'create-child', component: CreateChildComponent },
       { path: 'chat', component: ChatComponent },
       { path: 'child-list', component: ChildListComponent },
+    ],
+  },
+  {
+    path: 'child',
+    component: ChildMainComponent,
+    children: [
+      { path: '', component: ChildDashboardComponent },
+      { path: 'rewards', component: RewardListComponent },
+      { path: 'games', component: GamesListComponent },
+      { path: 'leaderboard', component: LeaderBoardComponent },
+      { path: 'learn', component: LearnComponent },
+      { path: 'chat', component: ChatComponent },
     ],
   },
 

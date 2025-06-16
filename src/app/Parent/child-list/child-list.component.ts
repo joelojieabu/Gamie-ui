@@ -4,18 +4,7 @@ import { ChildService } from '../../core/services/child.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-
-interface Child {
-  id: number;
-  parentId: number;
-  firstName: string;
-  lastName: string;
-  userName: string;
-  dateOfBirth: string;
-  isActive: boolean;
-  createdAt: string;
-  level: number;
-}
+import { Child } from '../../core/interfaces/child';
 
 @Component({
   selector: 'app-child-list',

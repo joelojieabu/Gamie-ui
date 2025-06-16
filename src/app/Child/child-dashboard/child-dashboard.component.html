@@ -1,0 +1,136 @@
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Content Grid -->
+  <div class="content-grid">
+    <!-- Header Card -->
+    <div class="header-card">
+      <div class="header-content">
+        <span class="header-icon"></span>
+        <div class="header-greeting">
+          <h1>Hey there, Money Master, {{ this.child.userName || "" }}! 👋</h1>
+          <p>Ready to conquer your financial quest today?</p>
+        </div>
+        <div class="header-coins-display">
+          <span class="header-coins-icon"><i class="fas fa-coins"></i></span>
+          <span class="header-coins-text"
+            >{{ this.child.tokens || 0 }} tokens</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Fun Challenges -->
+    <div class="card fun-challenges">
+      <div class="card-header">
+        <span class="card-icon">🎮</span>
+        <div>
+          <h3>Fun Challenges</h3>
+          <p>Level up while having a blast!</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" (click)="onStartPlaying()">
+        Start Playing
+      </button>
+    </div>
+
+    <!-- Hall of Fame -->
+    <div class="card hall-of-fame">
+      <div class="card-header">
+        <span class="card-icon">🏆</span>
+        <div>
+          <h3>Hall of Fame</h3>
+          <p>See how you stack up!</p>
+        </div>
+        <button class="btn btn-primary" (click)="goToLeaderBoard()">
+          Take a Peek
+        </button>
+      </div>
+      <div class="fame-items">
+        <div
+          *ngFor="let item of hallOfFameItems; let i = index"
+          class="fame-item"
+          [style.background-color]="
+            i === 0 ? '#FFD700' : i === 1 ? '#C0C0C0' : '#CD7F32'
+          "
+        >
+          <span class="fame-icon">{{
+            i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉"
+          }}</span>
+          <span class="fame-text">{{ item.userName }}</span>
+          <span class="fame-check">✓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Awesome Rewards -->
+    <div class="card awesome-rewards">
+      <div class="card-header">
+        <span class="card-icon">🎁</span>
+        <div>
+          <h3>Awesome Rewards</h3>
+          <p>Claim your epic prizes!</p>
+        </div>
+      </div>
+      <div class="rewards-grid">
+        <div class="reward-item">
+          <div class="reward-circle">
+            <span class="reward-icon">🧠</span>
+          </div>
+          <div class="reward-info">
+            <div class="reward-title">Genius Whizz</div>
+            <div class="reward-subtitle">Complete 20 quizzes</div>
+          </div>
+        </div>
+        <div class="reward-item">
+          <div class="reward-circle">
+            <span class="reward-icon">🧠</span>
+          </div>
+          <div class="reward-info">
+            <div class="reward-title">Genius Whizz</div>
+            <div class="reward-subtitle">Complete 20 quizzes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Today's Challenge -->
+    <div class="card todays-challenge">
+      <div class="card-header">
+        <span class="card-icon">📅</span>
+        <div>
+          <h3>Today's Challenge</h3>
+          <p>Complete for bonus coins!</p>
+        </div>
+      </div>
+      <div class="challenge-content">
+        <div class="challenge-main">
+          <h4>Smart Saver Challenge</h4>
+          <p>Save 1000 Smart Savings coins!</p>
+          <button class="btn btn-secondary" (click)="onAcceptChallenge()">
+            Accept Challenge
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learning Progress -->
+    <div class="card learning-progress">
+      <h3>Your Learning Progress</h3>
+      <div class="progress-list">
+        <div *ngFor="let item of progressItems" class="progress-item">
+          <div class="progress-info">
+            <span class="progress-subject">{{ item.subject }}</span>
+            <span class="progress-percentage">{{ item.progress }}%</span>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              [style.width.%]="item.progress"
+              [style.background-color]="item.color"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
