@@ -1,8 +1,12 @@
 <!-- Main Content -->
+
 <div class="main-content">
   <section>
-  <h2>Dashboard</h2>
-</section>
+    <h2>Dashboard</h2>
+  </section>
+  @if(isLoading) {
+  <mat-spinner></mat-spinner>
+  } @if(!isLoading) {
   <!-- Content Grid -->
   <div class="content-grid">
     <!-- Header Card -->
@@ -117,25 +121,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Learning Progress -->
-    <!-- <div class="card learning-progress">
-      <h3>Your Learning Progress</h3>
-      <div class="progress-list">
-        <div *ngFor="let item of progressItems" class="progress-item">
-          <div class="progress-info">
-            <span class="progress-subject">{{ item.subject }}</span>
-            <span class="progress-percentage">{{ item.progress }}%</span>
-          </div>
-          <div class="progress-bar">
-            <div
-              class="progress-fill"
-              [style.width.%]="item.progress"
-              [style.background-color]="item.color"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
+  }
 </div>

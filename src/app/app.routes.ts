@@ -4,7 +4,7 @@ import { MainComponent } from './Parent/main/main.component';
 import { DashboardComponent } from './Parent/dashboard/dashboard.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { CreateChildComponent } from './Parent/create-child/create-child.component';
-import { ChatComponent } from './Parent/chat/chat.component';
+import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChildListComponent } from './Parent/child-list/child-list.component';
 import { MainComponent as ChildMainComponent } from './Child/main/main.component';

@@ -11,7 +11,7 @@ export class ChatService {
 
   constructor(private http: HttpClient) {}
 
-  sendMessage(message: string, id: number): Observable<any> {
-    return this.http.post<any>(this.baseUrl, { message, id });
+  sendMessage(message: string, id: number, isParent: boolean): Observable<any> {
+    return this.http.post<any>(this.baseUrl, { message, id, isParent });
   }
 }

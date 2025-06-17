@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ChildService } from '../../core/services/child.service';
 import { Child } from '../../core/interfaces/child';
 import { GameService } from '../../core/services/game.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 interface HallOfFameItem {
   childId: number;
@@ -17,7 +18,7 @@ interface HallOfFameItem {
 
 @Component({
   selector: 'app-child-dashboard',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MatProgressSpinner],
   templateUrl: './child-dashboard.component.html',
   styleUrl: './child-dashboard.component.scss',
 })
@@ -41,11 +42,16 @@ export class ChildDashboardComponent {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.childId = parseInt(sessionStorage.getItem('childId') || '');
-    this.childService.findOne(this.childId).subscribe((data: Child) => {
-      this.child = data;
-      sessionStorage.setItem('Child', JSON.stringify(data));
-    });
+    this.childService.findOne(this.childId).subscribe(
+      (data: Child) => {
+        this.child = data;
+        this.isLoading = false;
+        sessionStorage.setItem('Child', JSON.stringify(data));
+      },
+      (error) => (this.isLoading = false)
+    );
 
     // this.child = JSON.parse(sessionStorage.getItem('Child') || '');
 
