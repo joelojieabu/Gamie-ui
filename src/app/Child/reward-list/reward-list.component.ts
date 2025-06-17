@@ -1,15 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RewardService } from '../../core/services/reward.service';
+import { ChildService } from '../../core/services/child.service';
+import { Child } from '../../core/interfaces/child';
+import { Reward } from '../../core/interfaces/reward';
 
-interface RewardItem {
-  id: number;
-  name: string;
-  points: number;
-  description: string;
-  icon: string;
-  backgroundColor: string;
-  available: boolean;
-}
+// interface RewardItem {
+//   id: number;
+//   name: string;
+//   description: string;
+//   price: number;
+//   icon: string;
+// }
 
 @Component({
   selector: 'app-reward-list',
@@ -17,68 +19,54 @@ interface RewardItem {
   templateUrl: './reward-list.component.html',
   styleUrl: './reward-list.component.scss',
 })
-export class RewardListComponent {
-  @Input() userPoints: number = 0;
+export class RewardListComponent implements OnInit {
+  rewardItems: Reward[] = [];
+  child!: Child;
+  parentId: number = parseInt(sessionStorage.getItem('parentId') || '');
 
-  rewardItems: RewardItem[] = [
-    {
-      id: 1,
-      name: 'Mini Robot Toy',
-      points: 750,
-      description: 'A cool robot that moves and make sounds',
-      icon: '🤖',
-      backgroundColor: '#fce4ec',
-      available: true,
-    },
-    {
-      id: 2,
-      name: 'Story Book',
-      points: 600,
-      description: 'An exciting adventure story about magic',
-      icon: '📚',
-      backgroundColor: '#e8eaf6',
-      available: true,
-    },
-    {
-      id: 3,
-      name: 'Art Set',
-      points: 500,
-      description: 'Colored pencils, markers and sketchbook',
-      icon: '✏️',
-      backgroundColor: '#fff3e0',
-      available: true,
-    },
-    {
-      id: 4,
-      name: 'Puzzle Game',
-      points: 400,
-      description: 'A puzzler for your favorite challenges',
-      icon: '🧩',
-      backgroundColor: '#e8f5e8',
-      available: true,
-    },
-    {
-      id: 6,
-      name: 'Mini Brain',
-      points: 750,
-      description: 'A cool For the smart ones',
-      icon: '🧠',
-      backgroundColor: '#f5f5f5',
-      available: false,
-    },
-  ];
+  constructor(
+    private rewardService: RewardService,
+    private childService: ChildService
+  ) {}
 
-  canAfford(itemPoints: number): boolean {
-    return this.userPoints >= itemPoints;
+  ngOnInit(): void {
+    this.rewardService.findAll().subscribe((data) => {
+      this.rewardItems = data;
+    });
+
+    this.child = JSON.parse(sessionStorage.getItem('Child') || '');
   }
 
-  redeemItem(item: RewardItem): void {
-    if (item.available && this.canAfford(item.points)) {
-      console.log(`Redeeming ${item.name} for ${item.points} points`);
-      alert(`Redeeming ${item.name}!`);
-      // Emit event to parent to update points
-    } else if (!this.canAfford(item.points)) {
+  canAfford(itemPoints: number): boolean {
+    return this.child.tokens >= itemPoints;
+  }
+
+  redeemReward(item: Reward): void {
+    if (this.canAfford(item.price)) {
+      this.rewardService
+        .redeemReward({
+          childId: this.child.id,
+          parentId: this.parentId,
+          rewardId: item.id,
+        })
+        .subscribe((data) => {
+          console.log('reward redeemed', data);
+        });
+    } else if (!this.canAfford(item.price)) {
       alert('Not enough points!');
     }
+  }
+
+  backgroundColor(index: number): string {
+    const colorArray = [
+      '#fce4ec',
+      '#e8eaf6',
+      '#fff3e0',
+      '#e8f5e8',
+      '#f5f5f5',
+      '#f5f5f5',
+    ];
+
+    return colorArray[Math.floor(Math.random() * colorArray.length)];
   }
 }

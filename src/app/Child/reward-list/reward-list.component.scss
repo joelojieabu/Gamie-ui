@@ -1,5 +1,5 @@
 .reward-shop {
-  width: 100%;
+//   width: 100%;
   padding: 30px;
 }
 
@@ -26,6 +26,7 @@
   min-height: 220px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+  cursor: pointer
 }
 
 .reward-card:hover {

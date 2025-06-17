@@ -86,15 +86,15 @@ export class DashboardComponent implements OnInit {
   // Table data
   displayedColumns: string[] = [
     'moduleName',
-    'score',
-    'timeTaken',
-    'playedAt',
     'firstName',
     'level',
+    'score',
+    'playedAt',
+    'timeTaken',
   ];
 
   dataSource = new MatTableDataSource<ParentGameHistory>([]);
-  parentId = parseInt(localStorage.getItem('parentId') || '0');
+  parentId = parseInt(sessionStorage.getItem('parentId') || '0');
 
   constructor(
     private childService: ChildService,
@@ -104,7 +104,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.loadChildren();
     this.updateCurrentDate();
-    // this.loadRecentGames();
     this.loadParentHistory(this.parentId);
   }
 
@@ -113,7 +112,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadChildren() {
-    const parentId = localStorage.getItem('parentId');
+    const parentId = sessionStorage.getItem('parentId');
     if (parentId) {
       this.childService.findByParent(parseInt(parentId)).subscribe({
         next: (children) => {

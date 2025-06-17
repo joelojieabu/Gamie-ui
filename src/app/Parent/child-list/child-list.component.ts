@@ -17,7 +17,7 @@ export class ChildListComponent {
   loading: boolean = true;
   error: string | null = null;
   isEmpty: boolean = false;
-  parentId = localStorage.getItem('parentId');
+  parentId = sessionStorage.getItem('parentId');
 
   constructor(private childService: ChildService, private router: Router) {}
 
@@ -66,5 +66,18 @@ export class ChildListComponent {
   goToChild(id: number) {
     this.childService.setRouteChildId(id);
     this.router.navigateByUrl('/parent/create-child');
+  }
+
+  backgroundColor(index: number): string {
+    const colorArray = [
+      '#fce4ec',
+      '#e8eaf6',
+      '#fff3e0',
+      '#e8f5e8',
+      '#f5f5f5',
+      '#f5f5f5',
+    ];
+
+    return colorArray[Math.floor(Math.random() * colorArray.length)];
   }
 }

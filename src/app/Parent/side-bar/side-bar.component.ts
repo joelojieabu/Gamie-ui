@@ -42,7 +42,6 @@ export class SideBarComponent {
 
   logout() {
     sessionStorage.clear();
-    localStorage.clear();
     this.router.navigateByUrl('/login');
     this.snackBar.open('You have been logged out successfully', 'Close', {
       duration: 3000,

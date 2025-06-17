@@ -79,7 +79,7 @@ export class CreateChildComponent implements OnInit, OnDestroy {
 
   onAddChild() {
     if (this.childForm.valid) {
-      const parentId = localStorage.getItem('parentId');
+      const parentId = sessionStorage.getItem('parentId');
       if (!parentId) {
         this.snackBar.open(
           'Parent ID not found. Please login again.',

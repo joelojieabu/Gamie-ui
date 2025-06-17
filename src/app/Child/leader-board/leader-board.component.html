@@ -1,1 +1,58 @@
-<p>leader-board works!</p>
+<section>
+  <h2>Leaderboard 🏆</h2>
+</section>
+
+<div class="table-container">
+  <div class="table-wrapper" *ngIf="!loading; else loadingTemplate">
+    <table class="reports-table">
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Username</th>
+          <th>Best Score</th>
+          <th>Total Games</th>
+          <th>Average Score</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let child of leaderboard; let i = index"
+          class="table-row"
+          [ngStyle]="{ 'background-color': backgroundColor(i) }"
+        >
+          <td class="date">{{ child.firstName }}</td>
+          <td class="date">{{ child.lastName }}</td>
+          <td class="status">
+            <span class="score">
+              {{ child.userName }}
+            </span>
+          </td>
+          <td class="activity">
+            <div class="activity-info">
+              <span class="score">{{ child.bestScore }}</span>
+            </div>
+          </td>
+          <td class="date">{{ child.totalGames }}</td>
+          <td class="date">{{ child.averageScore }}</td>
+          <td class="score">{{ child.level }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading children...</p>
+    </div>
+  </ng-template>
+
+  <div *ngIf="error" class="error-state">
+    <p>{{ error }}</p>
+    <!-- <button class="retry-btn" (click)="loadChildren(parseInt(parentId))">
+      Retry
+    </button> -->
+  </div>
+</div>

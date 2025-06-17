@@ -1,8 +1,7 @@
-
 .dashboard-container {
   display: flex;
   height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f5f5;
 }
 
@@ -14,7 +13,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px 0;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -111,7 +110,7 @@
   background: white;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   grid-area: header;
 }
 
@@ -168,26 +167,38 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  grid-template-areas: 
+  grid-template-areas:
     "header header"
     "challenges fame"
     "rewards today"
     "progress progress";
 }
 
-.header-card { grid-area: header; }
-.fun-challenges { grid-area: challenges; }
-.hall-of-fame { grid-area: fame; }
-.awesome-rewards { grid-area: rewards; }
-.todays-challenge { grid-area: today; }
-.learning-progress { grid-area: progress; }
+.header-card {
+  grid-area: header;
+}
+.fun-challenges {
+  grid-area: challenges;
+}
+.hall-of-fame {
+  grid-area: fame;
+}
+.awesome-rewards {
+  grid-area: rewards;
+}
+.todays-challenge {
+  grid-area: today;
+}
+.learning-progress {
+  grid-area: progress;
+}
 
 /* Card Styles */
 .card {
   background: white;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
@@ -376,26 +387,26 @@
   .dashboard-container {
     flex-direction: column;
   }
-  
+
   .sidebar {
     width: 100%;
     height: auto;
     flex-direction: row;
     padding: 10px;
   }
-  
+
   .nav-menu {
     display: flex;
     overflow-x: auto;
   }
-  
+
   .nav-item {
     flex-shrink: 0;
   }
-  
+
   .content-grid {
     grid-template-columns: 1fr;
-    grid-template-areas: 
+    grid-template-areas:
       "header"
       "challenges"
       "fame"
@@ -403,4 +414,8 @@
       "today"
       "progress";
   }
+}
+.hover-class:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

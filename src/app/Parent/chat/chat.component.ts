@@ -26,7 +26,7 @@ interface Message {
 export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
   @ViewChild('messageInput') private messageInput!: ElementRef;
-  parentId = parseInt(localStorage.getItem('parentId') ?? '0');
+  parentId = parseInt(sessionStorage.getItem('parentId') ?? '0');
 
   messages: Message[] = [];
   inputValue: string = '';

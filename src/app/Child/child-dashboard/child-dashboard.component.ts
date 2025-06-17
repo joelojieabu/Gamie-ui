@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
 import { ChildService } from '../../core/services/child.service';
 import { Child } from '../../core/interfaces/child';
 import { GameService } from '../../core/services/game.service';
@@ -36,7 +35,6 @@ export class ChildDashboardComponent {
   ];
 
   constructor(
-    private authservice: AuthService,
     private router: Router,
     private childService: ChildService,
     private gameService: GameService
@@ -46,9 +44,11 @@ export class ChildDashboardComponent {
     this.childService.getRouteChildId().subscribe((data) => {
       this.childId = data;
     });
-    this.childService
-      .findOne(this.childId)
-      .subscribe((data: Child) => (this.child = data));
+    this.childService.findOne(this.childId).subscribe((data: Child) => {
+      sessionStorage.setItem('Child', JSON.stringify(this.child));
+    });
+
+    this.child = JSON.parse(sessionStorage.getItem('Child') || '');
 
     this.gameService
       .getGlobalLeaderboard()
@@ -77,8 +77,11 @@ export class ChildDashboardComponent {
     this.router.navigateByUrl('/child/leaderboard');
   }
 
+  goToRewards() {
+    this.router.navigateByUrl('/child/rewards');
+  }
+
   onAcceptChallenge() {
     console.log('Accept Challenge clicked');
   }
 }
-

@@ -1,5 +1,5 @@
 <section>
-  <h2>Manage Children</h2>
+  <h2>My Kids</h2>
   <button class="continue-button" (click)="addChild()">+ Add Child</button>
 </section>
 
@@ -18,14 +18,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let child of children" class="table-row">
+        <tr
+          *ngFor="let child of children; let i = index"
+          class="table-row"
+          [ngStyle]="{ 'background-color': backgroundColor(i) }"
+        >
           <td class="module-id">{{ child.id }}</td>
           <td class="date">{{ child.firstName }}</td>
-          <td class="score">{{ child.lastName }}</td>
+          <td class="date">{{ child.lastName }}</td>
           <td class="status">
-            <span
-              [class]="'status-badge status-' + child.userName.toLowerCase()"
-            >
+            <span class="score">
               {{ child.userName }}
             </span>
           </td>

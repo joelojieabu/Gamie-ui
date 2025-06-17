@@ -15,8 +15,8 @@ export const authInterceptor: HttpInterceptorFn = (
 ) => {
   const router = inject(Router);
 
-  // Get the token from localStorage
-  const token = localStorage.getItem('token');
+  // Get the token from sessionStorage
+  const token = sessionStorage.getItem('token');
 
   // Clone the request and add the authorization header if token exists
   if (token) {
@@ -32,8 +32,8 @@ export const authInterceptor: HttpInterceptorFn = (
     catchError((error: HttpErrorResponse) => {
       // If the error is 401 (Unauthorized), clear the token and redirect to login
       if (error.status === 401) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('parentId');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('parentId');
         router.navigate(['/login']);
       }
       return throwError(() => error);

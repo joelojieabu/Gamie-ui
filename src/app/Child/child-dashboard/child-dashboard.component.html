@@ -1,5 +1,8 @@
 <!-- Main Content -->
 <div class="main-content">
+  <section>
+  <h2>Dashboard</h2>
+</section>
   <!-- Content Grid -->
   <div class="content-grid">
     <!-- Header Card -->
@@ -13,7 +16,7 @@
         <div class="header-coins-display">
           <span class="header-coins-icon"><i class="fas fa-coins"></i></span>
           <span class="header-coins-text"
-            >{{ this.child.tokens || 0 }} tokens</span
+            >{{ this.child.tokens.toLocaleString() || 0 }} tokens 💰</span
           >
         </div>
       </div>
@@ -23,7 +26,7 @@
     <div class="card fun-challenges">
       <div class="card-header">
         <span class="card-icon">🎮</span>
-        <div>
+        <div class="hover-class" (click)="onStartPlaying()">
           <h3>Fun Challenges</h3>
           <p>Level up while having a blast!</p>
         </div>
@@ -37,7 +40,7 @@
     <div class="card hall-of-fame">
       <div class="card-header">
         <span class="card-icon">🏆</span>
-        <div>
+        <div class="hover-class" (click)="goToLeaderBoard()">
           <h3>Hall of Fame</h3>
           <p>See how you stack up!</p>
         </div>
@@ -66,9 +69,11 @@
     <div class="card awesome-rewards">
       <div class="card-header">
         <span class="card-icon">🎁</span>
-        <div>
-          <h3>Awesome Rewards</h3>
-          <p>Claim your epic prizes!</p>
+        <div (click)="goToRewards()">
+          <h3 class="hover-class">Awesome Rewards</h3>
+          <p class="hover-class">
+            Redeem epic rewards with your hard earned tokens!
+          </p>
         </div>
       </div>
       <div class="rewards-grid">
@@ -77,17 +82,17 @@
             <span class="reward-icon">🧠</span>
           </div>
           <div class="reward-info">
-            <div class="reward-title">Genius Whizz</div>
-            <div class="reward-subtitle">Complete 20 quizzes</div>
+            <div class="reward-title">Smart Saver</div>
+            <div class="reward-subtitle">1000 Tokens</div>
           </div>
         </div>
         <div class="reward-item">
           <div class="reward-circle">
-            <span class="reward-icon">🧠</span>
+            <span class="reward-icon">🤖</span>
           </div>
           <div class="reward-info">
-            <div class="reward-title">Genius Whizz</div>
-            <div class="reward-subtitle">Complete 20 quizzes</div>
+            <div class="reward-title">Smart Investor</div>
+            <div class="reward-subtitle">2000 Tokens</div>
           </div>
         </div>
       </div>
@@ -97,16 +102,16 @@
     <div class="card todays-challenge">
       <div class="card-header">
         <span class="card-icon">📅</span>
-        <div>
+        <div class="hover-class">
           <h3>Today's Challenge</h3>
-          <p>Complete for bonus coins!</p>
+          <p>Compete for Tokens!</p>
         </div>
       </div>
       <div class="challenge-content">
         <div class="challenge-main">
           <h4>Smart Saver Challenge</h4>
-          <p>Save 1000 Smart Savings coins!</p>
-          <button class="btn btn-secondary" (click)="onAcceptChallenge()">
+          <p>Earn 1000 Smart Savings Tokens!</p>
+          <button class="btn btn-secondary" (click)="onStartPlaying()">
             Accept Challenge
           </button>
         </div>
@@ -114,7 +119,7 @@
     </div>
 
     <!-- Learning Progress -->
-    <div class="card learning-progress">
+    <!-- <div class="card learning-progress">
       <h3>Your Learning Progress</h3>
       <div class="progress-list">
         <div *ngFor="let item of progressItems" class="progress-item">
@@ -131,6 +136,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

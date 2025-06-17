@@ -55,7 +55,6 @@ export class ChildService {
   }
 
   setRouteChildId(id: number) {
-    console.log('id:', id);
     this.routeChildId.next(id);
   }
 

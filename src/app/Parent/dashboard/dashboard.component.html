@@ -150,7 +150,7 @@
         <ng-container matColumnDef="timeTaken">
           <th mat-header-cell *matHeaderCellDef>Time Spent</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.timeTaken }}
+            {{ element.timeTaken + ' minutes' }}
           </td>
         </ng-container>
 
@@ -165,7 +165,7 @@
         <ng-container matColumnDef="playedAt">
           <th mat-header-cell *matHeaderCellDef>Played At</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.playedAt }}
+            {{ element.playedAt | date }}
           </td>
         </ng-container>
 

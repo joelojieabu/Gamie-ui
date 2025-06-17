@@ -21,13 +21,6 @@ export class SidebarComponent {
       active: false,
     },
     {
-      id: 2,
-      icon: 'school',
-      label: 'Learn',
-      route: '/child/learn',
-      active: false,
-    },
-    {
       id: 3,
       icon: 'games',
       label: 'Games',
@@ -63,7 +56,6 @@ export class SidebarComponent {
 
   logout() {
     sessionStorage.clear();
-    localStorage.clear();
     this.router.navigateByUrl('/login');
     this.snackBar.open('You have been logged out successfully', 'Close', {
       duration: 3000,
