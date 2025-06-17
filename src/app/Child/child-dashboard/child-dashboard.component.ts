@@ -25,8 +25,8 @@ export class ChildDashboardComponent {
   coins = 1800;
   childId!: number;
   child!: Child;
-
   hallOfFameItems!: HallOfFameItem[];
+  isLoading: boolean = false;
 
   progressItems = [
     { subject: 'Financial Basics', progress: 95, color: '#FF6B35' },
@@ -41,14 +41,13 @@ export class ChildDashboardComponent {
   ) {}
 
   ngOnInit() {
-    this.childService.getRouteChildId().subscribe((data) => {
-      this.childId = data;
-    });
+    this.childId = parseInt(sessionStorage.getItem('childId') || '');
     this.childService.findOne(this.childId).subscribe((data: Child) => {
-      sessionStorage.setItem('Child', JSON.stringify(this.child));
+      this.child = data;
+      sessionStorage.setItem('Child', JSON.stringify(data));
     });
 
-    this.child = JSON.parse(sessionStorage.getItem('Child') || '');
+    // this.child = JSON.parse(sessionStorage.getItem('Child') || '');
 
     this.gameService
       .getGlobalLeaderboard()

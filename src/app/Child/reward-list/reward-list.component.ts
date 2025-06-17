@@ -4,6 +4,7 @@ import { RewardService } from '../../core/services/reward.service';
 import { ChildService } from '../../core/services/child.service';
 import { Child } from '../../core/interfaces/child';
 import { Reward } from '../../core/interfaces/reward';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 // interface RewardItem {
 //   id: number;
@@ -15,7 +16,7 @@ import { Reward } from '../../core/interfaces/reward';
 
 @Component({
   selector: 'app-reward-list',
-  imports: [CommonModule],
+  imports: [CommonModule, MatProgressSpinner],
   templateUrl: './reward-list.component.html',
   styleUrl: './reward-list.component.scss',
 })
@@ -23,6 +24,7 @@ export class RewardListComponent implements OnInit {
   rewardItems: Reward[] = [];
   child!: Child;
   parentId: number = parseInt(sessionStorage.getItem('parentId') || '');
+  isLoading: boolean = false;
 
   constructor(
     private rewardService: RewardService,
@@ -30,9 +32,17 @@ export class RewardListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.rewardService.findAll().subscribe((data) => {
-      this.rewardItems = data;
-    });
+    this.isLoading = true;
+    this.rewardService.findAll().subscribe(
+      (data) => {
+        this.rewardItems = data;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+        console.log(error);
+      }
+    );
 
     this.child = JSON.parse(sessionStorage.getItem('Child') || '');
   }
