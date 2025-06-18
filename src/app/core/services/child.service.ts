@@ -18,7 +18,7 @@ interface CreateChildDTO {
 export class ChildService {
   private baseUrl = environment + 'child';
 
-  routeChildId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private routeChildId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {}
 

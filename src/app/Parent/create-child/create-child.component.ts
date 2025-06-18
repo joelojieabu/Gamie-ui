@@ -209,5 +209,6 @@ export class CreateChildComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.childForm.reset();
     this.routeChildId = 0;
+    this.childService.setRouteChildId(0)
   }
 }
