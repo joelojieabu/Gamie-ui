@@ -86,8 +86,7 @@ export class DashboardComponent implements OnInit {
   // Table data
   displayedColumns: string[] = [
     'moduleName',
-    'firstName',
-    'level',
+    'userName',
     'score',
     'playedAt',
     'timeTaken',
@@ -184,6 +183,7 @@ export class DashboardComponent implements OnInit {
           playedAt: game.playedAt,
           firstName: game.child.firstName,
           level: game.child.level,
+          userName: game.child.userName,
         }));
 
         this.dataSource.data = mappedHistory;
