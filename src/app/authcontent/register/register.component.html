@@ -1,0 +1,247 @@
+<div class="login-container">
+  <div
+    class="left-half"
+    [style.background-image]="'url(' + leftBackgroundImage + ')'"
+  ></div>
+
+  <div class="right-half">
+    <div class="top-right-image">
+      <img [src]="topRightImage" alt="Logo" />
+    </div>
+
+    <div class="form-container">
+      <div class="logo-container">
+        <img [src]="mainLogoImage" alt="App Logo" />
+      </div>
+
+      <h1 class="welcome-text">Welcome!</h1>
+
+      <!-- Step Indicator -->
+      <div class="step-indicator">
+        <div
+          class="step"
+          [class.active]="currentStep === 1"
+          [class.completed]="currentStep > 1"
+        >
+          <span class="step-number">1</span>
+          <span class="step-label">Personal Info</span>
+        </div>
+        <div class="step-connector" [class.completed]="currentStep > 1"></div>
+        <div class="step" [class.active]="currentStep === 2">
+          <span class="step-number">2</span>
+          <span class="step-label">Security</span>
+        </div>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <!-- Step 1: Personal Information -->
+        @if (currentStep === 1) {
+        <div class="form-step">
+          <!-- First Name -->
+          <div class="input-container">
+            <input
+              type="text"
+              class="input-field"
+              [class.error]="isFieldInvalid('firstName')"
+              placeholder="First Name"
+              formControlName="firstName"
+            />
+            @if (isFieldInvalid('firstName')) {
+            <div class="error-message">
+              {{ getFieldError("firstName") }}
+            </div>
+            }
+          </div>
+
+          <!-- Last Name -->
+          <div class="input-container">
+            <input
+              type="text"
+              class="input-field"
+              [class.error]="isFieldInvalid('lastName')"
+              placeholder="Last Name"
+              formControlName="lastName"
+            />
+            @if (isFieldInvalid('lastName')) {
+            <div class="error-message">
+              {{ getFieldError("lastName") }}
+            </div>
+            }
+          </div>
+
+          <!-- Username -->
+          <div class="input-container">
+            <input
+              type="text"
+              class="input-field"
+              [class.error]="isFieldInvalid('username')"
+              placeholder="Username"
+              formControlName="username"
+            />
+            @if (isFieldInvalid('username')) {
+            <div class="error-message">
+              {{ getFieldError("username") }}
+            </div>
+            }
+          </div>
+
+          <!-- Email -->
+          <div class="input-container">
+            <input
+              type="email"
+              class="input-field"
+              [class.error]="isFieldInvalid('email')"
+              placeholder="Email Address"
+              formControlName="email"
+            />
+            @if (isFieldInvalid('email')) {
+            <div class="error-message">
+              {{ getFieldError("email") }}
+            </div>
+            }
+          </div>
+
+          <!-- Phone Number -->
+          <div class="input-container">
+            <input
+              type="tel"
+              class="input-field"
+              [class.error]="isFieldInvalid('phoneNumber')"
+              placeholder="Phone Number"
+              formControlName="phoneNumber"
+            />
+            @if (isFieldInvalid('phoneNumber')) {
+            <div class="error-message">
+              {{ getFieldError("phoneNumber") }}
+            </div>
+            }
+          </div>
+
+          <!-- Country -->
+          <div class="input-container">
+            <input
+              type="text"
+              class="input-field"
+              [class.error]="isFieldInvalid('country')"
+              placeholder="Country"
+              formControlName="country"
+            />
+            @if (isFieldInvalid('country')) {
+            <div class="error-message">
+              {{ getFieldError("country") }}
+            </div>
+            }
+          </div>
+
+          <button
+            type="button"
+            class="next-btn"
+            [disabled]="!isStep1Valid()"
+            (click)="nextStep()"
+          >
+            Next Step
+          </button>
+        </div>
+        }
+
+        <!-- Step 2: Security Information -->
+        @if (currentStep === 2) {
+        <div class="form-step">
+          <!-- Password -->
+          <div class="input-container">
+            <input
+              [type]="hidePassword ? 'password' : 'text'"
+              class="input-field"
+              [class.error]="isFieldInvalid('password')"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="
+                hidePassword ? 'Show password' : 'Hide password'
+              "
+            >
+              <i class="material-icons">{{
+                hidePassword ? "visibility" : "visibility_off"
+              }}</i>
+            </button>
+            @if (isFieldInvalid('password')) {
+            <div class="error-message">
+              {{ getFieldError("password") }}
+            </div>
+            }
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="input-container">
+            <input
+              [type]="hideConfirmPassword ? 'password' : 'text'"
+              class="input-field"
+              [class.error]="isFieldInvalid('confirmPassword')"
+              placeholder="Confirm Password"
+              formControlName="confirmPassword"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="toggleConfirmPasswordVisibility()"
+              [attr.aria-label]="
+                hideConfirmPassword ? 'Show password' : 'Hide password'
+              "
+            >
+              <i class="material-icons">{{
+                hideConfirmPassword ? "visibility" : "visibility_off"
+              }}</i>
+            </button>
+            @if (isFieldInvalid('confirmPassword')) {
+            <div class="error-message">
+              {{ getFieldError("confirmPassword") }}
+            </div>
+            }
+          </div>
+
+          <!-- Terms and Conditions -->
+          <div class="checkbox-container">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                class="checkbox-input"
+                formControlName="termsAccepted"
+              />
+              <span class="checkbox-text"
+                >I agree to the Terms and Conditions</span
+              >
+            </label>
+            @if (isFieldInvalid('termsAccepted')) {
+            <div class="error-message">
+              {{ getFieldError("termsAccepted") }}
+            </div>
+            }
+          </div>
+
+          <div class="button-group">
+            <button type="button" class="back-btn" (click)="previousStep()">
+              Back
+            </button>
+
+            <button
+              type="submit"
+              class="login-btn"
+              [disabled]="registerForm.invalid"
+            >
+              Create Account
+            </button>
+          </div>
+        </div>
+        }
+      </form>
+
+      <div class="forgot-password" (click)="onForgotPassword()">
+        Already have an account? Login here
+      </div>
+    </div>
+  </div>
+</div>

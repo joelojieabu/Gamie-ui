@@ -23,7 +23,7 @@ interface HallOfFameItem {
   styleUrl: './child-dashboard.component.scss',
 })
 export class ChildDashboardComponent {
-  coins = 1800;
+  coins = 0;
   childId!: number;
   child!: Child;
   hallOfFameItems!: HallOfFameItem[];

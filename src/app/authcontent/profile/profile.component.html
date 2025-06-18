@@ -1,0 +1,38 @@
+<div class="profiles-container">
+  <h1 class="title">Profiles</h1>
+
+  @if (loading) {
+  <div class="loading">
+    <mat-spinner [diameter]="40"></mat-spinner>
+  </div>
+  } @else if (error) {
+  <div class="error">{{ error }}</div>
+  } @else { @if (children.length === 0) {
+  <div class="loading">Oops you haven't added any children yet</div>
+  } @else {
+  <div class="profiles-grid">
+    @for (child of children; track child.id) {
+    <div
+      class="profile-card child-card"
+      [class.orange]="$index % 2 === 0"
+      [class.yellow]="$index % 2 === 1"
+      (click)="goToChild(child.id)"
+    >
+      <div class="profile-image-container">
+        <div class="image-placeholder">
+          <span class="placeholder-icon">😊</span>
+        </div>
+      </div>
+      <div class="profile-info">
+        <h3 class="profile-type">Child</h3>
+        <p class="profile-name">{{ child.userName }}</p>
+      </div>
+    </div>
+    }
+  </div>
+  }}
+
+  <button class="continue-button" (click)="continueAsParent()">
+    Continue as Parent
+  </button>
+</div>
