@@ -240,8 +240,9 @@
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
   transition: all 0.3s ease;
-  // z-index: 1000;
+  z-index: 1000;
   font-family: "Urbanist", sans-serif !important;
+  height: 50px
 }
 
 .continue-button:hover {
