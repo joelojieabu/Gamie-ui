@@ -38,8 +38,9 @@ export class CreateChildComponent implements OnInit, OnDestroy {
   childForm: FormGroup;
   routeChildId!: number;
   child: any;
-  addButtonDisabled: boolean = true;
+  addButtonDisabled: boolean = false;
   saveChangesButtonDisabled: boolean = false;
+  removeButtonDisabled: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -63,6 +64,7 @@ export class CreateChildComponent implements OnInit, OnDestroy {
     if (this.routeChildId) {
       this.addButtonDisabled = true;
       this.saveChangesButtonDisabled = false;
+      this.removeButtonDisabled = false;
       this.childService.findOne(this.routeChildId).subscribe((data) => {
         this.child = data;
         this.childForm.patchValue({
@@ -73,7 +75,9 @@ export class CreateChildComponent implements OnInit, OnDestroy {
         });
       });
     } else {
-      console.log('Not found');
+      this.addButtonDisabled = false;
+      this.saveChangesButtonDisabled = true;
+      this.removeButtonDisabled = true;
     }
   }
 
@@ -147,6 +151,7 @@ export class CreateChildComponent implements OnInit, OnDestroy {
           verticalPosition: 'top',
           panelClass: ['my-custom-snackbar'],
         });
+        this.router.navigateByUrl('/parent/child-list');
       },
       (error) => {
         this.snackBar.open(
@@ -159,6 +164,7 @@ export class CreateChildComponent implements OnInit, OnDestroy {
             panelClass: ['my-custom-snackbar'],
           }
         );
+        this.router.navigateByUrl('/parent/child-list');
       }
     );
   }
