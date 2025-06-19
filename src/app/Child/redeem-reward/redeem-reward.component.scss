@@ -115,6 +115,9 @@ mat-spinner {
 }
 
 .continue-button {
+  position: fixed;
+  top: 30px;
+  right: 30px;
   background-color: #e67e22;
   color: white;
   border: none;
@@ -137,15 +140,4 @@ mat-spinner {
 
 .continue-button:active {
   transform: translateY(0);
-}
-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 2rem;
-}
-
-.empty {
-  width: 500px;
-  margin: 0 auto;
 }

@@ -1,0 +1,30 @@
+<div class="reward-shop">
+  <h2 class="section-title">Redeem rewards with you tokens</h2>
+
+  @if(isLoading) { <mat-spinner [diameter]="40"></mat-spinner>} @if(!isLoading)
+  {
+  <div class="rewards-grid">
+    <div
+      *ngFor="let item of rewardItems; let i = index"
+      class="reward-card"
+      [ngStyle]="{ 'background-color': backgroundColor(i) }"
+    >
+      <div class="reward-icon">{{ item.icon }}</div>
+      <h3 class="reward-name">{{ item.name }}</h3>
+      <div class="reward-points">{{ item.price }} Tokens</div>
+      <p class="reward-description">{{ item.description }}</p>
+
+      <button
+        class="redeem-btn"
+        [disabled]="!canAfford(item.price)"
+        [class.insufficient]="!canAfford(item.price)"
+        (click)="redeemReward(item)"
+      >
+        <span *ngIf="!canAfford(item.price)">NOT ENOUGH POINTS</span>
+        <span *ngIf="canAfford(item.price)">REDEEM NOW</span>
+      </button>
+    </div>
+  </div>
+  }
+  <!-- Rewards Grid -->
+</div>

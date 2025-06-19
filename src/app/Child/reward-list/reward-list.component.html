@@ -1,9 +1,17 @@
 <div class="reward-shop">
-  <h2 class="section-title">Redeem rewards with you tokens</h2>
+  <section>
+    <h2 class="section-title">Your Rewards</h2>
+
+    <button class="continue-button" (click)="goToBuyRewardList()">
+      Redeem Reward 💰
+    </button>
+  </section>
+
   @if(isLoading) { <mat-spinner [diameter]="40"></mat-spinner>}
 
   <!-- Rewards Grid -->
   <div class="rewards-grid">
+    @if(rewardItems.length > 0){
     <div
       *ngFor="let item of rewardItems; let i = index"
       class="reward-card"
@@ -11,18 +19,11 @@
     >
       <div class="reward-icon">{{ item.icon }}</div>
       <h3 class="reward-name">{{ item.name }}</h3>
-      <div class="reward-points">{{ item.price }} Tokens</div>
       <p class="reward-description">{{ item.description }}</p>
-
-      <button
-        class="redeem-btn"
-        [disabled]="!canAfford(item.price)"
-        [class.insufficient]="!canAfford(item.price)"
-        (click)="redeemReward(item)"
-      >
-        <span *ngIf="!canAfford(item.price)">NOT ENOUGH POINTS</span>
-        <span *ngIf="canAfford(item.price)">REDEEM NOW</span>
-      </button>
     </div>
+    }
+    @if(rewardItems.length === 0){
+      <p class="empty">Nothing to show here, redeem rewards with your tokens 😊 </p>
+    }
   </div>
 </div>

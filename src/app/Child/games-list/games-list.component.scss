@@ -6,340 +6,260 @@
 
 .game-selection-container {
   min-height: 100vh;
-  //   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-family: "Urbanist", sans-serif;
-  padding: 20px;
-  position: relative;
-  overflow-x: hidden;
+  background-color: #f8fafc;
+  font-family: "Urbanist", sans-serif !important;
+  padding: 2rem;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 10;
+  margin-bottom: 2.5rem;
 }
 
 .bouncing-title {
-  font-size: 3rem;
-  color: #dc2626;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-  animation: bounce 2s infinite;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  animation: none; /* Remove bouncing animation for professional look */
 }
 
 .subtitle {
-  font-size: 1.5rem;
-  color: #dc2626;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 400;
 }
 
 .floating-icons {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.floating-icon {
-  position: absolute;
-  font-size: 2rem;
-  animation: float 6s ease-in-out infinite;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: transform 0.3s ease;
-}
-
-.floating-icon:hover {
-  transform: scale(1.3) rotate(20deg);
-}
-
-.floating-icon:nth-child(1) {
-  top: 10%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.floating-icon:nth-child(2) {
-  top: 20%;
-  right: 10%;
-  animation-delay: 1s;
-}
-
-.floating-icon:nth-child(3) {
-  top: 60%;
-  left: 5%;
-  animation-delay: 2s;
-}
-
-.floating-icon:nth-child(4) {
-  top: 70%;
-  right: 5%;
-  animation-delay: 3s;
-}
-
-.floating-icon:nth-child(5) {
-  top: 40%;
-  left: 15%;
-  animation-delay: 4s;
-}
-
-.floating-icon:nth-child(6) {
-  top: 30%;
-  right: 20%;
-  animation-delay: 5s;
+  display: none; /* Hide floating icons for cleaner look */
 }
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
   max-width: 1000px;
   margin: 0 auto;
-  position: relative;
-  z-index: 10;
 }
 
 .game-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f0f8ff 100%);
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 3px solid transparent;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
   position: relative;
   overflow: hidden;
 }
 
 .game-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
 }
 
 .bill-game {
-  border-color: #06b6d4;
-  background: linear-gradient(145deg, #475569 0%, #06b6d4 100%);
+  border-left: 4px solid #3b82f6;
 }
 
 .bill-game:hover {
-  background: linear-gradient(145deg, #06b6d4 0%, #0891b2 100%);
+  border-left-color: #2563eb;
 }
 
 .math-game {
-  border-color: #047857;
-  background: linear-gradient(145deg, #78716c 0%, #065f46 100%);
+  border-left: 4px solid #10b981;
 }
 
 .math-game:hover {
-  background: linear-gradient(145deg, #065f46 0%, #047857 100%);
+  border-left-color: #059669;
 }
 
 .game-icon {
-  font-size: 4rem;
-  margin-bottom: 20px;
-  animation: pulse 2s infinite;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: none; /* Remove pulse animation */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .game-title {
-  font-size: 2rem;
-  color: #ffffff;
-  margin-bottom: 15px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  text-shadow: none;
 }
 
 .game-description {
-  font-size: 1.2rem;
-  color: #ffffff;
-  margin-bottom: 25px;
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
   line-height: 1.5;
 }
 
 .play-button {
-  background: linear-gradient(45deg, #f6ad55 , #f6ad55  );
-  color: #333;
-  padding: 15px 30px;
-  border-radius: 25px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-  transition: all 0.3s ease;
-  display: inline-block;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  text-decoration: none;
 }
 
 .play-button:hover {
-  background: linear-gradient(45deg, #ffed4e, #ffd700);
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bill-game .play-button {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.math-game .play-button {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.math-game .play-button:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
 }
 
 .footer {
   text-align: center;
-  margin-top: 50px;
-  position: relative;
-  z-index: 10;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8f0;
 }
 
 .footer p {
-  font-size: 1.3rem;
-  color: #dc2626;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 0.875rem;
+  color: #64748b;
+  text-shadow: none;
 }
 
-/* Animations */
+/* Remove all animations for professional look */
 @keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-20px);
-  }
-  60% {
-    transform: translateY(-10px);
-  }
+  /* Keep empty to disable */
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-20px) rotate(5deg);
-  }
-  50% {
-    transform: translateY(-40px) rotate(-5deg);
-  }
-  75% {
-    transform: translateY(-20px) rotate(3deg);
-  }
+  /* Keep empty to disable */
 }
 
 @keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Falling coins animation */
-.falling-coin {
-  position: fixed;
-  top: -50px;
-  font-size: 2rem;
-  animation: fall linear;
-  pointer-events: none;
-  z-index: 5;
+  /* Keep empty to disable */
 }
 
 @keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(720deg);
-  }
-}
-
-/* Sparkle effect */
-.sparkle-container {
-  position: fixed;
-  pointer-events: none;
-  z-index: 1000;
-}
-
-.sparkle {
-  position: absolute;
-  font-size: 1rem;
-  animation: sparkleEffect 1s ease-out forwards;
+  /* Keep empty to disable */
 }
 
 @keyframes sparkleEffect {
-  0% {
-    opacity: 1;
-    transform: scale(0) translate(0, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1) translate(var(--random-x, 20px), var(--random-y, -20px));
-  }
+  /* Keep empty to disable */
 }
 
-.sparkle:nth-child(1) {
-  --random-x: 30px;
-  --random-y: -30px;
-}
-.sparkle:nth-child(2) {
-  --random-x: -25px;
-  --random-y: -35px;
-}
-.sparkle:nth-child(3) {
-  --random-x: 40px;
-  --random-y: -20px;
-}
-.sparkle:nth-child(4) {
-  --random-x: -30px;
-  --random-y: -25px;
-}
-.sparkle:nth-child(5) {
-  --random-x: 20px;
-  --random-y: -40px;
-}
-.sparkle:nth-child(6) {
-  --random-x: -35px;
-  --random-y: -15px;
+/* Remove falling coins and sparkle effects */
+.falling-coin,
+.sparkle-container,
+.sparkle {
+  display: none;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
   .bouncing-title {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
   }
 
   .subtitle {
-    font-size: 1.2rem;
+    font-size: 0.875rem;
   }
 
   .games-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 1rem;
   }
 
   .game-card {
-    padding: 20px;
+    padding: 1.25rem;
   }
 
   .game-title {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
 
   .game-description {
-    font-size: 1rem;
-  }
-
-  .floating-icon {
-    font-size: 1.5rem;
+    font-size: 0.875rem;
   }
 }
 
 @media (max-width: 480px) {
+  .game-selection-container {
+    padding: 1rem;
+  }
+
   .bouncing-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .game-card {
-    padding: 15px;
+    padding: 1rem;
   }
 
   .game-icon {
-    font-size: 3rem;
+    font-size: 2rem;
   }
+}
+
+/* Additional modern styling touches */
+.game-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.1),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.game-card:hover::before {
+  transform: translateX(100%);
+}
+
+.bill-game::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    transparent
+  );
+}
+
+.math-game::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 185, 129, 0.3),
+    transparent
+  );
 }

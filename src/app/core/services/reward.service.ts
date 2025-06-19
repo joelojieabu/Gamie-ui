@@ -15,7 +15,7 @@ interface RedeemDTO {
   providedIn: 'root',
 })
 export class RewardService {
-  private baseUrl = environment + 'reward';
+  private baseUrl = environment + 'reward/';
 
   constructor(private http: HttpClient) {}
 

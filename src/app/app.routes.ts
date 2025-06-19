@@ -14,6 +14,7 @@ import { GamesListComponent } from './Child/games-list/games-list.component';
 import { LeaderBoardComponent } from './Child/leader-board/leader-board.component';
 import { LearnComponent } from './Child/learn/learn.component';
 import { BillIdentificationComponent } from './Child/bill-identification/bill-identification.component';
+import { RedeemRewardComponent } from './Child/redeem-reward/redeem-reward.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parent-login', pathMatch: 'full' },
@@ -42,6 +43,7 @@ export const routes: Routes = [
       { path: 'learn', component: LearnComponent },
       { path: 'chat', component: ChatComponent },
       { path: 'bill-identification', component: BillIdentificationComponent },
+      { path: 'redeem-reward', component: RedeemRewardComponent },
     ],
   },
 

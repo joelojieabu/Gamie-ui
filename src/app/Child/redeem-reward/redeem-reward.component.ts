@@ -5,34 +5,53 @@ import { ChildService } from '../../core/services/child.service';
 import { Child } from '../../core/interfaces/child';
 import { Reward } from '../../core/interfaces/reward';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reward-list',
+  selector: 'app-redeem-reward',
   imports: [CommonModule, MatProgressSpinner],
-  templateUrl: './reward-list.component.html',
-  styleUrl: './reward-list.component.scss',
+  templateUrl: './redeem-reward.component.html',
+  styleUrl: './redeem-reward.component.scss',
 })
-export class RewardListComponent implements OnInit {
+export class RedeemRewardComponent {
   rewardItems: Reward[] = [];
   child!: Child;
   parentId: number = parseInt(sessionStorage.getItem('parentId') || '');
   isLoading: boolean = false;
   childId!: number;
+  childRewardIds!: Array<number>;
 
   constructor(
     private rewardService: RewardService,
     private childService: ChildService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
+
     this.childId = parseInt(sessionStorage.getItem('childId') || '');
     this.childService.findOne(this.childId).subscribe(
       (data: Child) => {
-        this.rewardItems = data.rewards;
-        this.isLoading = false;
+        this.childRewardIds = data.rewards.map((x) => x.id);
+        console.log("Child Reward Id's:", this.childRewardIds);
+        this.rewardService.findAll().subscribe(
+          (data) => {
+            const rewards = data;
+            console.log('rewards: ', rewards);
+            this.rewardItems = rewards.filter(
+              (reward) => !this.childRewardIds.includes(reward.id)
+            );
+            // this.rewardItems = data;
+            this.isLoading = false;
+          },
+          (error) => {
+            this.isLoading = false;
+            console.log(error);
+          }
+        );
       },
       (error) => (this.isLoading = false)
     );
@@ -45,6 +64,7 @@ export class RewardListComponent implements OnInit {
   }
 
   redeemReward(item: Reward): void {
+    this.isLoading = true;
     if (this.canAfford(item.price)) {
       this.rewardService
         .redeemReward({
@@ -52,9 +72,32 @@ export class RewardListComponent implements OnInit {
           parentId: this.parentId,
           rewardId: item.id,
         })
-        .subscribe((data) => {
-          console.log('reward redeemed', data);
-        });
+        .subscribe(
+          (data) => {
+            this.isLoading = false;
+            this.snackBar.open('Reward redeemed successfully', 'Close', {
+              duration: 3500,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+              panelClass: ['my-custom-snackbar'],
+            });
+            this.rewardItems = this.rewardItems.filter(
+              (reward) => reward.id !== item.id
+            );
+          },
+          (error) => {
+            this.snackBar.open(
+              "It's not you, it's us. Please try again",
+              'Close',
+              {
+                duration: 3500,
+                horizontalPosition: 'center',
+                verticalPosition: 'top',
+                panelClass: ['my-custom-snackbar'],
+              }
+            );
+          }
+        );
     } else if (!this.canAfford(item.price)) {
       alert('Not enough points!');
     }
@@ -73,7 +116,5 @@ export class RewardListComponent implements OnInit {
     return colorArray[Math.floor(Math.random() * colorArray.length)];
   }
 
-  goToBuyRewardList() {
-    this.router.navigateByUrl('/child/redeem-reward');
-  }
+  goToBuyRewardList() {}
 }
