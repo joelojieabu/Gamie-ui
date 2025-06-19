@@ -13,6 +13,7 @@ import { RewardListComponent } from './Child/reward-list/reward-list.component';
 import { GamesListComponent } from './Child/games-list/games-list.component';
 import { LeaderBoardComponent } from './Child/leader-board/leader-board.component';
 import { LearnComponent } from './Child/learn/learn.component';
+import { BillIdentificationComponent } from './Child/bill-identification/bill-identification.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parent-login', pathMatch: 'full' },
@@ -40,6 +41,7 @@ export const routes: Routes = [
       { path: 'leaderboard', component: LeaderBoardComponent },
       { path: 'learn', component: LearnComponent },
       { path: 'chat', component: ChatComponent },
+      { path: 'bill-identification', component: BillIdentificationComponent },
     ],
   },
 

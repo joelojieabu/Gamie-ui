@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
-interface GameSession {
+export interface GameSession {
   childId: number;
   score: number;
   correctAnswers: number;
