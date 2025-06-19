@@ -244,8 +244,11 @@ export class DashboardComponent implements OnInit {
 
   updateChart(history: GameHistory[]) {
     if (this.chart) {
-      const labels = history.map((game) =>
-        new Date(game.playedAt).toLocaleDateString()
+      const labels = history.map(
+        (game) =>
+          `${new Date(game.playedAt).toLocaleDateString()} at ${new Date(
+            game.playedAt
+          ).toLocaleTimeString()}`
       );
       const scores = history.map((game) => game.score);
 

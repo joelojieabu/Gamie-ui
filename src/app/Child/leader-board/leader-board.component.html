@@ -7,6 +7,7 @@
     <table class="reports-table">
       <thead>
         <tr>
+          <th>Rank</th>
           <th>First name</th>
           <th>Last name</th>
           <th>Username</th>
@@ -22,6 +23,7 @@
           class="table-row"
           [ngStyle]="{ 'background-color': backgroundColor(i) }"
         >
+          <td class="score">{{ i + 1 }}</td>
           <td class="date">{{ child.firstName }}</td>
           <td class="date">{{ child.lastName }}</td>
           <td class="status">
