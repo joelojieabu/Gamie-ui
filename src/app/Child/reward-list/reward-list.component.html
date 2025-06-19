@@ -22,7 +22,7 @@
       <p class="reward-description">{{ item.description }}</p>
     </div>
     }
-    @if(rewardItems.length === 0){
+    @if(!isLoading && rewardItems.length === 0){
       <p class="empty">Nothing to show here, redeem rewards with your tokens 😊 </p>
     }
   </div>
