@@ -263,3 +263,66 @@
 p{
   font-family: "Urbanist", sans-serif!important;
 }
+
+.message-text {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0 0 0.25rem 0;
+  word-wrap: break-word;
+}
+
+.message-text strong {
+  font-weight: 600;
+  color: #1f2937;
+  display: block;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.message-text strong:first-child {
+  margin-top: 0;
+}
+
+.message-text em {
+  font-style: italic;
+  color: #374151;
+}
+
+/* Better spacing for AI messages */
+.ai-bubble .message-text {
+  line-height: 1.7;
+}
+
+.ai-bubble .message-text strong {
+  color: #f97316;
+  font-weight: 600;
+}
+
+/* Emoji spacing */
+.message-text {
+  white-space: pre-wrap;
+}
+
+/* List-like formatting for bullet points */
+.message-text strong::before {
+  content: "• ";
+  color: #f97316;
+  font-weight: bold;
+  margin-right: 0.25rem;
+}
+
+.message-text strong:first-child::before {
+  content: "";
+  margin-right: 0;
+}
+
+/* Better mobile formatting */
+@media (max-width: 768px) {
+  .message-text {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  
+  .message-text strong {
+    font-size: 0.875rem;
+  }
+}

@@ -21,12 +21,19 @@ export class RedeemRewardComponent {
   isLoading: boolean = false;
   childId!: number;
   childRewardIds!: Array<number>;
+  colorArray = [
+    '#fce4ec',
+    '#e8eaf6',
+    '#fff3e0',
+    '#e8f5e8',
+    '#f5f5f5',
+    '#f5f5f5',
+  ];
 
   constructor(
     private rewardService: RewardService,
     private childService: ChildService,
-    private snackBar: MatSnackBar,
-    private router: Router
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -39,8 +46,15 @@ export class RedeemRewardComponent {
         console.log("Child Reward Id's:", this.childRewardIds);
         this.rewardService.findAll().subscribe(
           (data) => {
-            const rewards = data;
-            console.log('rewards: ', rewards);
+            const rewards = data.map((reward) => {
+              return {
+                ...reward,
+                color:
+                  this.colorArray[
+                    Math.floor(Math.random() * this.colorArray.length)
+                  ],
+              };
+            });
             this.rewardItems = rewards.filter(
               (reward) => !this.childRewardIds.includes(reward.id)
             );
@@ -106,19 +120,4 @@ export class RedeemRewardComponent {
       alert('Not enough points!');
     }
   }
-
-  backgroundColor(index: number): string {
-    const colorArray = [
-      '#fce4ec',
-      '#e8eaf6',
-      '#fff3e0',
-      '#e8f5e8',
-      '#f5f5f5',
-      '#f5f5f5',
-    ];
-
-    return colorArray[Math.floor(Math.random() * colorArray.length)];
-  }
-
-  goToBuyRewardList() {}
 }

@@ -9,6 +9,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../core/services/chat.service';
+import { MessageFormatterPipe } from '../core/pipes/message-formatter.pipe';
 
 interface Message {
   id: number;
@@ -19,7 +20,7 @@ interface Message {
 
 @Component({
   selector: 'app-chat',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MessageFormatterPipe], // Add the pipe to imports
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
 })

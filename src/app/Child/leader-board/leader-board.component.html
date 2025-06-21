@@ -21,7 +21,7 @@
         <tr
           *ngFor="let child of leaderboard; let i = index"
           class="table-row"
-          [ngStyle]="{ 'background-color': backgroundColor(i) }"
+          [ngStyle]="{ 'background-color': child.color }"
         >
           <td class="score">{{ i + 1 }}</td>
           <td class="date">{{ child.firstName }}</td>

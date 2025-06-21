@@ -19,6 +19,14 @@ export class RewardListComponent implements OnInit {
   parentId: number = parseInt(sessionStorage.getItem('parentId') || '');
   isLoading: boolean = false;
   childId!: number;
+  colorArray = [
+    '#fce4ec',
+    '#e8eaf6',
+    '#fff3e0',
+    '#e8f5e8',
+    '#f5f5f5',
+    '#f5f5f5',
+  ];
 
   constructor(
     private rewardService: RewardService,
@@ -31,7 +39,16 @@ export class RewardListComponent implements OnInit {
     this.childId = parseInt(sessionStorage.getItem('childId') || '');
     this.childService.findOne(this.childId).subscribe(
       (data: Child) => {
-        this.rewardItems = data.rewards;
+        this.rewardItems = data.rewards.map((reward) => {
+          return {
+            ...reward,
+            color:
+              this.colorArray[
+                Math.floor(Math.random() * this.colorArray.length)
+              ],
+          };
+        });
+
         this.isLoading = false;
       },
       (error) => (this.isLoading = false)
@@ -58,19 +75,6 @@ export class RewardListComponent implements OnInit {
     } else if (!this.canAfford(item.price)) {
       alert('Not enough points!');
     }
-  }
-
-  backgroundColor(index: number): string {
-    const colorArray = [
-      '#fce4ec',
-      '#e8eaf6',
-      '#fff3e0',
-      '#e8f5e8',
-      '#f5f5f5',
-      '#f5f5f5',
-    ];
-
-    return colorArray[Math.floor(Math.random() * colorArray.length)];
   }
 
   goToBuyRewardList() {

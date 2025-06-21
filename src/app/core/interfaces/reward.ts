@@ -7,4 +7,5 @@ export interface Reward {
   price: number;
   icon: string;
   children: Child[];
+  color: string;
 }

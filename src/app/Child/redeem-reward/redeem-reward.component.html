@@ -7,7 +7,7 @@
     <div
       *ngFor="let item of rewardItems; let i = index"
       class="reward-card"
-      [ngStyle]="{ 'background-color': backgroundColor(i) }"
+      [ngStyle]="{ 'background-color': item.color }"
     >
       <div class="reward-icon">{{ item.icon }}</div>
       <h3 class="reward-name">{{ item.name }}</h3>

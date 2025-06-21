@@ -7,9 +7,6 @@
       <div class="date">{{ currentDate }}</div>
       <div class="sync-info">Last synced: 7 minutes ago</div>
     </div>
-    <!-- <div class="logo">
-        <span>GTCO</span>
-      </div> -->
     <img src="../../../assets/gtlogo.svg" />
   </div>
 
@@ -38,7 +35,14 @@
             'ai-bubble': message.sender === 'ai'
           }"
         >
-          <p class="message-text">{{ message.text }}</p>
+          <!-- Use innerHTML for AI messages to render HTML formatting -->
+          <div 
+            *ngIf="message.sender === 'ai'" 
+            class="message-text" 
+            [innerHTML]="message.text | messageFormatter">
+          </div>
+          <!-- Keep plain text for user messages -->
+          <p *ngIf="message.sender === 'user'" class="message-text">{{ message.text }}</p>
           <p class="message-time">{{ formatTime(message.timestamp) }}</p>
         </div>
       </div>
