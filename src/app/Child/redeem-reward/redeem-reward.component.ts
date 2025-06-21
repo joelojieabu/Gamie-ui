@@ -75,12 +75,16 @@ export class RedeemRewardComponent {
         .subscribe(
           (data) => {
             this.isLoading = false;
-            this.snackBar.open('Reward redeemed successfully', 'Close', {
-              duration: 3500,
-              horizontalPosition: 'center',
-              verticalPosition: 'top',
-              panelClass: ['my-custom-snackbar'],
-            });
+            this.snackBar.open(
+              'You did it 🎉. Go tell you parents about your exiting new reward! 🥳',
+              'Close',
+              {
+                duration: 3500,
+                horizontalPosition: 'center',
+                verticalPosition: 'top',
+                panelClass: ['my-custom-snackbar'],
+              }
+            );
             this.rewardItems = this.rewardItems.filter(
               (reward) => reward.id !== item.id
             );
