@@ -1,0 +1,114 @@
+<!-- finance-quiz.component.html -->
+<div class="game-container">
+  <!-- Navigation Header -->
+  <!-- <div class="navigation-header">
+    <button class="dashboard-button" (click)="navigateToDashboard()">
+      ← Back to Dashboard
+    </button>
+  </div> -->
+
+  <!-- Game Header -->
+  <div class="header-container">
+    <div class="score-display">
+      <span><strong>Score:</strong> {{ score }}</span>
+    </div>
+    <div class="level-display">
+      <span><strong>Level:</strong> {{ level }}</span>
+    </div>
+    <div class="timer-display" [ngClass]="{ 'timer-low': timeLeft < 15 }">
+      <span><strong>Time:</strong> {{ timeLeft }}s</span>
+    </div>
+  </div>
+
+  <ng-container *ngIf="gameActive; else gameOver">
+    <!-- Question Section -->
+    <div class="question-container">
+      <div class="question-number">Question {{ totalQuestions + 1 }}</div>
+      <h2 class="question-title" *ngIf="currentQuestion">
+        {{ currentQuestion.question }}
+      </h2>
+
+      <!-- Category Badge -->
+      <!-- <div class="category-badge" *ngIf="currentQuestion">
+        <span [ngClass]="'category-' + currentQuestion.category">
+          {{ getCategoryName(currentQuestion.category) | titlecase }}
+        </span>
+      </div> -->
+    </div>
+
+    <!-- Options Grid -->
+    <div class="options-container" *ngIf="currentQuestion">
+      <button
+        *ngFor="let option of currentQuestion.options; let i = index"
+        class="option-button"
+        (click)="handleSelection(option)"
+        [disabled]="feedback !== null"
+      >
+        <span class="option-letter">{{ getOptionLetter(i) }}</span>
+        <span class="option-text">{{ option }}</span>
+      </button>
+    </div>
+
+    <!-- Feedback Message -->
+    <div
+      *ngIf="feedback"
+      class="feedback-container"
+      [ngClass]="{
+        'success-feedback': feedback.type === 'success',
+        'error-feedback': feedback.type === 'error'
+      }"
+    >
+      <div class="feedback-message">{{ feedback.message }}</div>
+      <div class="feedback-explanation">{{ feedback.explanation }}</div>
+    </div>
+  </ng-container>
+
+  <!-- Game Over Template -->
+  <ng-template #gameOver>
+    <div class="game-over-container">
+      <div class="game-over-icon">🎉</div>
+      <h2 class="game-over-title">Time's Up!</h2>
+      <p class="final-score">
+        Your final score: <span>{{ score }}</span> points
+      </p>
+      <p class="questions-answered">
+        You answered {{ Math.floor(score / 10) }} questions correctly out of
+        {{ totalQuestions }} total questions!
+      </p>
+      <div class="performance-message">
+        <div *ngIf="score >= 100" class="excellent">
+          You earned {{ score * 10 }} Tokens 💰
+        </div>
+        <span *ngIf="score >= 100" class="excellent"
+          >Excellent work! You're a finance star! ⭐</span
+        >
+        <div *ngIf="score >= 50" class="good">
+          You earned {{ score * 10 }} Tokens 💰
+        </div>
+        <span *ngIf="score >= 50 && score < 100" class="good"
+          >Great job! Keep learning about money! 👍</span
+        >
+        <div *ngIf="score < 50" class="keep-trying">
+          You earned {{ score * 10 }} Tokens 💰 
+        </div>
+        <span *ngIf="score < 50" class="keep-trying"
+          >Good effort! Keep practicing to become a money expert! 💪</span
+        >
+      </div>
+      <button class="play-again-button" (click)="resetGame()">
+        Play Again
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Game Instructions -->
+  <div class="instructions-container">
+    <h3 class="instructions-title">How to Play Finance Quiz:</h3>
+    <p class="instructions-text">
+      Answer questions about money, saving, and spending! Each correct answer
+      gives you 10 points. Learn about needs vs wants, how to save money, and
+      basic math with money. You have 90 seconds to answer as many questions as
+      you can!
+    </p>
+  </div>
+</div>

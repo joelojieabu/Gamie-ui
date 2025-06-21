@@ -64,7 +64,8 @@ export class GamesListComponent {
       if (gameName === 'bill-identification') {
         this.router.navigate(['child/bill-identification']);
       } else if (gameName === 'money-math') {
-        this.router.navigate(['/money-math-challenge']);
+        this.router.navigate(['child/money-basics']);
+        return;
       }
     }, 300);
   }

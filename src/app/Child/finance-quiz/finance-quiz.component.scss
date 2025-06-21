@@ -1,0 +1,512 @@
+/* Finance Quiz Game Styles */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+  min-height: 100vh;
+  padding: 1rem;
+  font-family: "Urbanist", sans-serif !important;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="25" r="1" fill="white" opacity="0.05"/><circle cx="25" cy="75" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Navigation Header */
+.navigation-header {
+  width: 100%;
+  max-width: 48rem;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+
+  .dashboard-button {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: #0F172A;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Header Styles */
+.header-container {
+  width: 100%;
+  max-width: 48rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+
+  .score-display,
+  .level-display,
+  .timer-display {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    padding: 16px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    min-width: 120px;
+    text-align: center;
+    color: #0F172A;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    strong {
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+  }
+
+  .score-display {
+    border-left: 4px solid #10b981;
+  }
+
+  .level-display {
+    border-left: 4px solid #3b82f6;
+  }
+
+  .timer-display {
+    border-left: 4px solid #f59e0b;
+
+    &.timer-low {
+      border-left-color: #ef4444;
+      animation: timer-pulse 1s infinite;
+    }
+  }
+}
+
+/* Question Styles */
+.question-container {
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+  max-width: 48rem;
+
+  .question-number {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    color: #0F172A ;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 0rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .question-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #0F172A;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .category-badge {
+    margin-bottom: 1rem;
+
+    span {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &.category-saving {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+
+      &.category-spending {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      &.category-earning {
+        background-color: #dbeafe;
+        color: #1e40af;
+      }
+
+      &.category-needs-wants {
+        background-color: #fce7f3;
+        color: #be185d;
+      }
+
+      &.category-money-basics {
+        background-color: #e0e7ff;
+        color: #3730a3;
+      }
+    }
+  }
+}
+
+/* Options Grid */
+.options-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  font-family: "Urbanist", sans-serif !important;
+
+  .option-button {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 1rem;
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 70px;
+    font-family: "Urbanist", sans-serif !important;
+
+    .option-letter {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #0F172A;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      font-family: "Urbanist", sans-serif !important;
+    }
+
+    .option-text {
+      font-weight: 600;
+      font-size: 16px;
+      color: #1e293b;
+      line-height: 1.4;
+    }
+
+    &:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 1);
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+
+      .option-letter {
+        transform: scale(1.1);
+      }
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Feedback Message */
+.feedback-container {
+  margin-top: 1rem;
+  padding: 24px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  animation: feedback-slide-in 0.4s ease-out;
+  backdrop-filter: blur(10px);
+
+  .feedback-message {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .feedback-explanation {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  &.success-feedback {
+    background: rgba(34, 197, 94, 0.15);
+    color: #0F172A;
+    border: 2px solid rgba(34, 197, 94, 0.3);
+  }
+
+  &.error-feedback {
+    background: rgba(239, 68, 68, 0.15);
+    color: #0F172A;
+    border: 2px solid rgba(239, 68, 68, 0.3);
+  }
+}
+
+/* Game Over Screen */
+.game-over-container {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  .game-over-icon {
+    font-size: 48px;
+    margin-bottom: 1rem;
+  }
+
+  .game-over-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #1e293b;
+    letter-spacing: -0.025em;
+  }
+
+  .final-score {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+    color: #64748b;
+
+    span {
+      font-weight: 700;
+      color: #667eea;
+      font-size: 28px;
+    }
+  }
+
+  .questions-answered {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+  }
+
+  .performance-message {
+    margin-bottom: 2rem;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 600;
+
+    .excellent {
+      color: #059669;
+      background-color: #ecfdf5;
+    }
+
+    .good {
+      color: #0891b2;
+      background-color: #f0fdfa;
+    }
+
+    .keep-trying {
+      color: #dc2626;
+      background-color: #fff7ed;
+    }
+  }
+
+  .play-again-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #0F172A;
+    font-weight: 600;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Instructions */
+.instructions-container {
+  margin-top: 2rem;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 48rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #0F172A;
+
+  .instructions-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  .instructions-text {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+}
+
+/* Animations */
+@keyframes timer-pulse {
+  0%,
+  100% {
+    border-left-color: #f59e0b;
+  }
+  50% {
+    border-left-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+  }
+}
+
+@keyframes feedback-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-container {
+    padding: 1.5rem;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .score-display,
+    .level-display,
+    .timer-display {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+
+  .question-container {
+    .question-title {
+      font-size: 22px;
+      margin: 0.5rem !important;
+    }
+  }
+
+  .options-container {
+    max-width: 100%;
+
+    .option-button {
+      padding: 1.25rem;
+      min-height: 60px;
+
+      .option-text {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .game-over-container {
+    padding: 2rem 1.5rem;
+
+    .game-over-title {
+      font-size: 24px;
+    }
+
+    .final-score {
+      font-size: 16px;
+
+      span {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 1rem;
+  }
+
+  .question-container .question-title {
+    font-size: 20px;
+  }
+
+  .options-container .option-button {
+    padding: 1rem;
+    min-height: 50px;
+
+    .option-text {
+      font-size: 13px;
+    }
+
+    .option-letter {
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+    }
+  }
+}

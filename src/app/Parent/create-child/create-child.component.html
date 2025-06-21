@@ -87,6 +87,20 @@
               Date of birth is required
             </mat-error>
           </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Account Number</mat-label>
+            <input
+              matInput
+              formControlName="accountNumber"
+              placeholder="Enter account number"
+            />
+            <mat-error
+              *ngIf="childForm.get('accountNumber')?.hasError('required')"
+            >
+              Account Number is required
+            </mat-error>
+          </mat-form-field>
         </div>
 
         <!-- Security Settings -->
@@ -147,7 +161,7 @@
         mat-stroked-button
         class="remove-child-btn"
         (click)="onRemoveChild()"
-         [disabled]="removeButtonDisabled"
+        [disabled]="removeButtonDisabled"
       >
         Remove Child
       </button>

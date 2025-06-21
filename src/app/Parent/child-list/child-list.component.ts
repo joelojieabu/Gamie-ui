@@ -49,15 +49,15 @@ export class ChildListComponent {
     });
   }
 
-  viewReport(moduleId: string) {
-    // Navigate to detailed report view
-    console.log('Viewing report for module:', moduleId);
-  }
+  // viewReport(moduleId: string) {
+  //   // Navigate to detailed report view
+  //   console.log('Viewing report for module:', moduleId);
+  // }
 
-  viewAll() {
-    // Navigate to all reports page
-    console.log('View all reports');
-  }
+  // viewAll() {
+  //   // Navigate to all reports page
+  //   console.log('View all reports');
+  // }
 
   addChild() {
     this.router.navigateByUrl('/parent/create-child');

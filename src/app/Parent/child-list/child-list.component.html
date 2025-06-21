@@ -14,6 +14,7 @@
           <th>Username</th>
           <th>Date of Birth</th>
           <th>Level</th>
+          <th>Account number</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -37,6 +38,7 @@
             </div>
           </td>
           <td class="score">{{ child.level }}</td>
+          <td class="date">{{ child.accountNumber }}</td>
           <td (click)="goToChild(child.id)" class="eye">
             <mat-icon>remove_red_eye</mat-icon>
           </td>

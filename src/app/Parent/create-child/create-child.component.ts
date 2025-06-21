@@ -53,6 +53,7 @@ export class CreateChildComponent implements OnInit, OnDestroy {
       lastName: ['', [Validators.required]],
       userName: ['', [Validators.required]],
       dateOfBirth: ['', [Validators.required]],
+      accountNumber: ['', [Validators.required]],
     });
   }
 
@@ -72,6 +73,7 @@ export class CreateChildComponent implements OnInit, OnDestroy {
           lastName: this.child.lastName,
           userName: this.child.userName,
           dateOfBirth: this.child.dateOfBirth,
+          accountNumber: this.child.accountNumber
         });
       });
     } else {
@@ -103,6 +105,7 @@ export class CreateChildComponent implements OnInit, OnDestroy {
         firstName: this.childForm.get('firstName')?.value,
         lastName: this.childForm.get('lastName')?.value,
         userName: this.childForm.get('userName')?.value,
+        accountNumber: this.childForm.get('accountNumber')?.value,
         dateOfBirth: this.childForm
           .get('dateOfBirth')
           ?.value.toISOString()

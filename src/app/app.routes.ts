@@ -15,6 +15,7 @@ import { LeaderBoardComponent } from './Child/leader-board/leader-board.componen
 import { LearnComponent } from './Child/learn/learn.component';
 import { BillIdentificationComponent } from './Child/bill-identification/bill-identification.component';
 import { RedeemRewardComponent } from './Child/redeem-reward/redeem-reward.component';
+import { FinanceQuizComponent } from './Child/finance-quiz/finance-quiz.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'parent-login', pathMatch: 'full' },
@@ -44,6 +45,7 @@ export const routes: Routes = [
       { path: 'chat', component: ChatComponent },
       { path: 'bill-identification', component: BillIdentificationComponent },
       { path: 'redeem-reward', component: RedeemRewardComponent },
+      { path: 'money-basics', component: FinanceQuizComponent },
     ],
   },
 

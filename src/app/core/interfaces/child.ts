@@ -1,5 +1,5 @@
-import { Parent } from "./parent";
-import { Reward } from "./reward";
+import { Parent } from './parent';
+import { Reward } from './reward';
 
 export interface Child {
   id: number;
@@ -12,6 +12,7 @@ export interface Child {
   createdAt: Date;
   level: number;
   tokens: number;
+  accountNumber: number;
   parent: Parent;
   rewards: Reward[];
 }
