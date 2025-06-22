@@ -40,6 +40,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     this.currentDate = this.getCurrentDate();
+    // window.location.reload();
   }
 
   ngAfterViewChecked(): void {

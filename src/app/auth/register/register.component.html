@@ -227,13 +227,14 @@
               Back
             </button>
 
+            @if(!isLoading) {
             <button
               type="submit"
               class="login-btn"
               [disabled]="registerForm.invalid"
             >
-              Create Account
-            </button>
+              Create Account</button
+            >} @if(isLoading){<mat-spinner [diameter]="40"></mat-spinner>}
           </div>
         </div>
         }

@@ -18,7 +18,7 @@ import { RedeemRewardComponent } from './Child/redeem-reward/redeem-reward.compo
 import { FinanceQuizComponent } from './Child/finance-quiz/finance-quiz.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'parent-login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profiles', component: ProfileComponent },
