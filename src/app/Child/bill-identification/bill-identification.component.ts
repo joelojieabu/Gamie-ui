@@ -28,7 +28,7 @@ export class BillIdentificationComponent implements OnInit, OnDestroy {
   score = 0;
   feedback: Feedback | null = null;
   gameActive = true;
-  timeLeft = 60;
+  timeLeft = 30;
   level = 1;
   timerInterval: any;
   childId: number = parseInt(sessionStorage.getItem('childId') || '');

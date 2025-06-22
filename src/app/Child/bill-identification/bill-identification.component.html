@@ -1,7 +1,6 @@
 <!-- bill-identification-game.component.html -->
 <div class="game-container">
-  
-    <!-- Game Header -->
+  <!-- Game Header -->
   <div class="header-container">
     <div class="score-display">
       <span><strong>Score:</strong> {{ score }}</span>
@@ -9,62 +8,70 @@
     <div class="level-display">
       <span><strong>Level:</strong> {{ level }}</span>
     </div>
-    <div class="timer-display" [ngClass]="{'timer-low': timeLeft < 10}">
+    <div class="timer-display" [ngClass]="{ 'timer-low': timeLeft < 10 }">
       <span><strong>Time:</strong> {{ timeLeft }}s</span>
     </div>
   </div>
-  
+
   <ng-container *ngIf="gameActive; else gameOver">
     <!-- Question Section -->
     <div class="question-container">
       <h2 class="question-title">What bill is this?</h2>
       <div class="bill-display" *ngIf="currentBill">
-        <img 
-          [src]="currentBill.imageUrl" 
+        <img
+          [src]="currentBill.imageUrl"
           [alt]="currentBill.name"
           [style.background-color]="currentBill.color"
-        >
+        />
       </div>
     </div>
-    
+
     <!-- Options Grid -->
     <div class="options-container">
-      <button 
-        *ngFor="let option of options" 
+      <button
+        *ngFor="let option of options"
         class="option-button"
         (click)="handleSelection(option)"
       >
         <span>N{{ option.value }}</span>
       </button>
     </div>
-    
+
     <!-- Feedback Message -->
-    <div 
-      *ngIf="feedback" 
+    <div
+      *ngIf="feedback"
       class="feedback-container"
-      [ngClass]="{'success-feedback': feedback.type === 'success', 'error-feedback': feedback.type === 'error'}"
+      [ngClass]="{
+        'success-feedback': feedback.type === 'success',
+        'error-feedback': feedback.type === 'error'
+      }"
     >
       {{ feedback.message }}
     </div>
   </ng-container>
-  
+
   <!-- Game Over Template -->
   <ng-template #gameOver>
     <div class="game-over-container">
       <h2 class="game-over-title">Time's up!</h2>
-      <p class="final-score">Your final score: <span>{{ score }}</span></p>
-      <button 
-        class="play-again-button"
-        (click)="resetGame()"
-      >
+      <p class="final-score">
+        You have earned <span>{{ score * 100 }} Tokens</span>
+      </p>
+      <p class="final-score">
+        Your final score: <span>{{ score }}</span>
+      </p>
+      <button class="play-again-button" (click)="resetGame()">
         Play Again
       </button>
     </div>
   </ng-template>
-  
+
   <!-- Game Instructions -->
   <div class="instructions-container">
     <h3 class="instructions-title">How to Play:</h3>
-    <p class="instructions-text">Look at the bill and select the correct value. Earn points for correct answers before time runs out!</p>
+    <p class="instructions-text">
+      Look at the bill and select the correct value. Earn points for correct
+      answers before time runs out!
+    </p>
   </div>
 </div>

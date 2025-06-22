@@ -29,7 +29,7 @@ export class FinanceQuizComponent implements OnInit, OnDestroy {
   score = 0;
   feedback: Feedback | null = null;
   gameActive = true;
-  timeLeft = 90; // 90 seconds for more thinking time
+  timeLeft = 30; // 90 seconds for more thinking time
   level = 2;
   timerInterval: any;
   childId: number = parseInt(sessionStorage.getItem('childId') || '');
@@ -339,7 +339,7 @@ export class FinanceQuizComponent implements OnInit, OnDestroy {
 
   resetGame(): void {
     this.score = 0;
-    this.timeLeft = 90;
+    this.timeLeft = 30;
     this.gameActive = true;
     this.level = 1;
     this.currentQuestionIndex = 0;
